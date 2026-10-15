@@ -240,4 +240,25 @@ This file records the prompts I type as a vibe coder. One section per problem, u
 
 **Nothing else on the page was altered** — the three ticket tabs and the Cash tab were verified untouched after the edit, and the page still opens by double-click with no external resources.
 
+## Problem 11 — Submit to GitHub
+
+**Prompt 1 (initial):**
+> Problem 11: Submit to GitHub. Finally, lets push the code to a public GitHub repository so graders can clone it. I need you to give me (as in the previous homework) the repo URL for me to post to Canvas, and I need you to also put it in output/github_url.txt. Do NOT push my real .env to the GitHub repo. But DO include both database files under data/ (the original and your working copy) so graders can run my app easily. The expected file layout is in the attached pictures: Please match it EXACTLY AS IS and double check. README should explain: copy original DB to the working copy when you need a clean run, start MCP server, start FastAPI backend, start the React board, reset the DB before a full three-ticket run. Lets go!
+
+**Follow-up prompt:** None needed. The prompt gave the layout as images, the secret to exclude, the files to include, the five things the README had to explain, and where to write the URL.
+
+**Repo:** https://github.com/eduardohub555/campus-customs-hw5 — public, matching the `campus-customs-hw4` naming from last time. Also written to [github_url.txt](output/github_url.txt).
+
+**Six files the layout required did not exist yet** and were created: `requirements.txt` at the root (pinning fastmcp, pydantic-ai-slim, python-dotenv, fastapi and uvicorn), `.env.example`, `.gitignore`, a `.mcp.json` with **relative** paths so a cloned copy works rather than the absolute ones in the project-root config, `README.md`, and `output/github_url.txt`. All 26 paths in the diagram were then verified present, both before pushing and again in a fresh clone.
+
+**Two redundancies were removed to tighten the match:** `mcp_server/requirements.txt`, now superseded by the root one (its README reference was updated), and a leftover `.gitkeep`. The source `.docx` and `.pdf` the screenshots arrived in were also dropped, since the six extracted PNGs are what `resolved_board.html` actually uses.
+
+**What was kept despite not being named in the diagram, and why:** the diagram shows `frontend/` with no children at all, so it lists key files rather than every file. `backend/` keeps `settings.py`, `agents.py`, `audit.py`, `expectations.py` and three entry points because `main.py` cannot import without them — deleting them to match a picture would leave graders a repo that does not run. `backend/prompts/_shared_rules.md` is loaded into all five agent prompts, `mcp_server/smoke_test.py` is referenced by the README, the six screenshots are what `resolved_board.html` displays, and `funny_joke.txt` is the Problem 1 proof file cited in this log. The README names the backend modules explicitly so nothing looks unexplained.
+
+**The working copy ships clean rather than resolved.** It held the finished run — $160.00, two payments, three resolved tickets — which would have greeted a grader with an app that looks already done. It was reset to match the original so the app runs out of the box, and the README says so. The evidence of the real run is not lost: it lives in `resolved_tickets.json`, `audit_trail.json`, the Cash tab of `desk_tickets.html`, and the screenshots.
+
+**Secret safety was checked three ways, not assumed:** `.env` is gitignored and absent from the push, absent from the entire git history, and a regex search for a real-looking key across every committed file returns nothing but the `your-portkey-api-key-here` placeholder in `.env.example`.
+
+**Verified by cloning the public repo fresh** rather than trusting the local folder: 26/26 required paths present, no `.env` anywhere in the history, both databases present and byte-identical, all six screenshots resolving for `resolved_board.html`, and the README containing all five workflows the prompt asked for.
+
 <!-- Sections for the remaining problems are appended here as each one is worked. -->
