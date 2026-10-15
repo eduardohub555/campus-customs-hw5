@@ -1,0 +1,355 @@
+{
+  "resolved_tickets": {
+    "generated_at": "2026-10-14",
+    "shop_date": "2026-08-31",
+    "database": "data/campus_customs_new.db",
+    "model_used_by_every_agent": "gpt-6-luna",
+    "run_summary": {
+      "starting_balance": 3400.0,
+      "ending_balance": 160.0,
+      "total_paid": 3240.0,
+      "payments_made_by_agents": 0,
+      "payments_approved_by_humans": 2,
+      "all_tickets_resolved": true
+    },
+    "tickets": [
+      {
+        "id": 101,
+        "type": "customer_order",
+        "subject": "Bulldog tee",
+        "requester": "Tauhid Zaman",
+        "final_status": "resolved",
+        "outcome": "Cannot be filled today \u2014 0 of CC-TEE-WHITE size S on hand. The only vendor who reprints it, Bulldog Print Co, was blocked by unpaid invoice 501, so the restock could not even be ordered. The human approved $840.00, clearing the block; with a 5-day lead the earliest arrival is 2026-09-05. No restock order was placed and nothing was sent to the vendor.",
+        "run_id": "api-20261015T032102Z-976aa0",
+        "model": "gpt-6-luna",
+        "delegation_chain": [
+          "boss -> inventory",
+          "inventory -> accounting"
+        ],
+        "agents_involved": [
+          "accounting",
+          "inventory",
+          "boss"
+        ],
+        "tools_used": [
+          {
+            "agent": "boss",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 101
+            }
+          },
+          {
+            "agent": "inventory",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 101
+            }
+          },
+          {
+            "agent": "inventory",
+            "tool": "check_stock",
+            "args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            }
+          },
+          {
+            "agent": "inventory",
+            "tool": "find_restock_vendor",
+            "args": {
+              "sku": "CC-TEE-WHITE"
+            }
+          },
+          {
+            "agent": "accounting",
+            "tool": "get_invoice",
+            "args": {
+              "invoice_id": 501
+            }
+          },
+          {
+            "agent": "accounting",
+            "tool": "get_cash_position",
+            "args": {}
+          },
+          {
+            "agent": "accounting",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 101
+            }
+          },
+          {
+            "agent": "accounting",
+            "tool": "prepare_payment",
+            "args": {
+              "kind": "invoice",
+              "ref_id": 501
+            }
+          }
+        ],
+        "agent_contributions": [
+          {
+            "agent": "accounting",
+            "asked_by": "inventory",
+            "contribution": "Drafted the $840.00 payment to Bulldog Print Co for invoice 501, due 2026-08-28 and 3 days overdue as of 2026-08-31. Checking has $3,400.00; if paid, $2,560.00 would remain, and payment would unblock the vendor for shipping with a 5-day lead time; this is waiting for a person to approve and has not been paid.",
+            "recommended_action": "A human should approve or decline the drafted $840.00 payment; if approved, it clears the invoice blocker so restocking can proceed, with the vendor's 5-day lead time.",
+            "draft_written": null,
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "get_cash_position",
+              "get_invoice",
+              "get_ticket",
+              "prepare_payment"
+            ],
+            "input_tokens": 23543,
+            "output_tokens": 597
+          },
+          {
+            "agent": "inventory",
+            "asked_by": "boss",
+            "contribution": "We cannot fill ticket 101 today: CC-TEE-WHITE, size S, has 0 on hand, leaving a shortfall of 1. Bulldog Print Co is the evidence-based vendor (prior invoice 501 names this SKU and size), but it is blocked by that unpaid $840.00 invoice; its lead time is 5 days, implying arrival 2026-09-05 once unblocked. No restock request or order has been sent or placed.",
+            "recommended_action": "After a human approves and clears invoice 501, send Bulldog Print Co a request: \u201cCould you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?\u201d Have Accounting prepare a purchase order for human approval; no order is committed.",
+            "draft_written": "Could you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?",
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "check_stock",
+              "find_restock_vendor",
+              "get_ticket"
+            ],
+            "input_tokens": 27209,
+            "output_tokens": 952
+          },
+          {
+            "agent": "boss",
+            "asked_by": "human",
+            "contribution": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+            "recommended_action": null,
+            "draft_written": null,
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "get_ticket"
+            ],
+            "input_tokens": 30432,
+            "output_tokens": 1161
+          }
+        ],
+        "human_approvals": [
+          {
+            "approved_by": "Eduardo CS",
+            "kind": "invoice",
+            "ref_id": 501,
+            "amount": 840.0,
+            "paid_at": "2026-08-31",
+            "balance_before": 3400.0,
+            "balance_after": 2560.0,
+            "tables_updated": [
+              "payments",
+              "cash_accounts",
+              "invoices"
+            ],
+            "payment_id": 1
+          }
+        ],
+        "payments_made_by_agents": 0,
+        "tokens": {
+          "input": 30432,
+          "output": 1161
+        }
+      },
+      {
+        "id": 102,
+        "type": "rent_notice",
+        "subject": "Rent due",
+        "requester": "Elm City Properties",
+        "final_status": "resolved",
+        "outcome": "The lease is authoritative, not the email: $2,400.00 to Elm City Properties due 2026-09-02, two days from the shop date, which matched the email's claim. The human approved the $2,400.00 rent payment.",
+        "run_id": "api-20261015T032508Z-277c0d",
+        "model": "gpt-6-luna",
+        "delegation_chain": [
+          "boss -> facilities"
+        ],
+        "agents_involved": [
+          "facilities",
+          "boss"
+        ],
+        "tools_used": [
+          {
+            "agent": "boss",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 102
+            }
+          },
+          {
+            "agent": "facilities",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 102
+            }
+          },
+          {
+            "agent": "facilities",
+            "tool": "get_lease_payment",
+            "args": {
+              "lease_id": 1
+            }
+          }
+        ],
+        "agent_contributions": [
+          {
+            "agent": "facilities",
+            "asked_by": "boss",
+            "contribution": "The lease records $2,400 owed to Elm City Properties, due 2026-09-02\u20142 days from the shop\u2019s date of 2026-08-31. That matches the email\u2019s timing; the lease is the authoritative amount and due date.",
+            "recommended_action": "Have Accounting prepare a rent payment draft for human approval.",
+            "draft_written": null,
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "get_lease_payment",
+              "get_ticket"
+            ],
+            "input_tokens": 10920,
+            "output_tokens": 302
+          },
+          {
+            "agent": "boss",
+            "asked_by": "human",
+            "contribution": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+            "recommended_action": null,
+            "draft_written": null,
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "get_ticket"
+            ],
+            "input_tokens": 13971,
+            "output_tokens": 492
+          }
+        ],
+        "human_approvals": [
+          {
+            "approved_by": "Eduardo CS",
+            "kind": "rent",
+            "ref_id": 1,
+            "amount": 2400.0,
+            "paid_at": "2026-08-31",
+            "balance_before": 2560.0,
+            "balance_after": 160.0,
+            "tables_updated": [
+              "payments",
+              "cash_accounts"
+            ],
+            "payment_id": 2
+          }
+        ],
+        "payments_made_by_agents": 0,
+        "tokens": {
+          "input": 13971,
+          "output": 492
+        }
+      },
+      {
+        "id": 103,
+        "type": "price_override",
+        "subject": "Bulk hoodie discount",
+        "requester": "Yale AI Club",
+        "final_status": "resolved",
+        "outcome": "No discount was set. Cost $22.00, list $58.00 \u2014 $440.00 at cost and $1,160.00 at list for 20 units, leaving $720.00 of margin. The database records no discount policy and no approval authority, so the agents returned the numbers and escalated the decision rather than inventing a percentage. No payment was involved.",
+        "run_id": "api-20261015T032620Z-a6e46a",
+        "model": "gpt-6-luna",
+        "delegation_chain": [
+          "boss -> accounting"
+        ],
+        "agents_involved": [
+          "accounting",
+          "boss"
+        ],
+        "tools_used": [
+          {
+            "agent": "boss",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 103
+            }
+          },
+          {
+            "agent": "accounting",
+            "tool": "get_ticket",
+            "args": {
+              "ticket_id": 103
+            }
+          },
+          {
+            "agent": "accounting",
+            "tool": "get_price_and_margin",
+            "args": {
+              "sku": "CC-HOOD-NAVY",
+              "qty": 20
+            }
+          }
+        ],
+        "agent_contributions": [
+          {
+            "agent": "accounting",
+            "asked_by": "boss",
+            "contribution": "Ticket 103 requests 20 size-M CC-HOOD-NAVY hoodies at a bulk discount. Recorded unit cost is $22 and list price is $58; totals are $440 at cost and $1,160 at list, leaving $720 gross margin at list (62.1% of list price per unit).",
+            "recommended_action": "Use the $22 unit cost as the floor and $58 list price as the ceiling when deciding; no discount percentage or approval authority is recorded, so a human must choose and approve any discount.",
+            "draft_written": null,
+            "blocked_on_missing_data": "The database records no discount policy or approval authority and does not specify an allowable discount percentage.",
+            "tools_used": [
+              "get_price_and_margin",
+              "get_ticket"
+            ],
+            "input_tokens": 11156,
+            "output_tokens": 355
+          },
+          {
+            "agent": "boss",
+            "asked_by": "human",
+            "contribution": "Do not set a discount from the available records; keep the request pending human pricing decision. Accounting reports $22 unit cost and $58 list price ($440 cost and $1,160 list for 20); any discount needs human approval.",
+            "recommended_action": null,
+            "draft_written": null,
+            "blocked_on_missing_data": null,
+            "tools_used": [
+              "get_ticket"
+            ],
+            "input_tokens": 14265,
+            "output_tokens": 533
+          }
+        ],
+        "human_approvals": [],
+        "payments_made_by_agents": 0,
+        "tokens": {
+          "input": 14265,
+          "output": 533
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 1,
+        "kind": "invoice",
+        "ref_id": 501,
+        "amount": 840.0,
+        "account": "checking",
+        "paid_at": "2026-08-31",
+        "approved_by": "Eduardo CS"
+      },
+      {
+        "id": 2,
+        "kind": "rent",
+        "ref_id": 1,
+        "amount": 2400.0,
+        "account": "checking",
+        "paid_at": "2026-08-31",
+        "approved_by": "Eduardo CS"
+      }
+    ],
+    "integrity": {
+      "ending_balance_matches_cash_accounts": true,
+      "arithmetic": "3400.00 - 840.00 - 2400.00 = 160.00",
+      "note": "No agent executed a payment. Both payments came through POST /approvals, which requires an explicit human click and a human name."
+    }
+  }
+}

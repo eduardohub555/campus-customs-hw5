@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs — Resolved Board</title>
+<style>
+  :root{--navy:#00356b;--navy-800:#002a54;--blue-50:#f4f8fc;--blue-100:#e6eef7;--blue-200:#cfe0f0;
+        --gold:#c9a227;--ink:#16222e;--muted:#5e7085;--good:#1c6b47;--stop:#9b2226;
+        --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--blue-50);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  h1,h2,h3{font-family:var(--serif);font-weight:600}
+  header{background:var(--navy);color:#fff;border-bottom:3px solid var(--gold);padding:26px 0}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+  header h1{margin:0;font-size:27px}
+  header p{margin:5px 0 0;color:var(--blue-200);font-size:14px}
+  .totals{display:flex;gap:26px;flex-wrap:wrap;margin-top:16px}
+  .totals div{background:rgba(255,255,255,.1);border-radius:8px;padding:9px 16px}
+  .totals span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-200)}
+  .totals strong{font-family:var(--serif);font-size:21px}
+  nav{background:var(--navy-800);position:sticky;top:0;z-index:5}
+  .tabs{max-width:1180px;margin:0 auto;padding:0 26px;display:flex;gap:2px;flex-wrap:wrap}
+  .tab{background:transparent;border:0;color:var(--blue-200);cursor:pointer;padding:13px 20px;
+       font:inherit;font-size:14.5px;font-weight:600;border-bottom:3px solid transparent}
+  .tab:hover{color:#fff;background:rgba(255,255,255,.07)}
+  .tab[aria-selected="true"]{background:var(--blue-50);color:var(--navy);border-bottom-color:var(--gold)}
+  .panel{display:none;padding:26px 0 60px}.panel.active{display:block}
+  .card{background:#fff;border:1px solid var(--blue-200);border-radius:11px;padding:20px 24px;margin:0 0 20px;
+        box-shadow:0 1px 2px rgba(0,53,107,.06),0 8px 24px rgba(0,53,107,.07)}
+  .card h2{margin:0;font-size:20px;color:var(--navy)}
+  .card h3{margin:20px 0 8px;font-size:13px;color:var(--navy);text-transform:uppercase;letter-spacing:.07em}
+  .chip{display:inline-block;padding:3px 10px;border-radius:999px;background:#d9f0e3;color:var(--good);
+        font-size:12px;font-weight:700;letter-spacing:.04em;margin-left:10px;vertical-align:middle}
+  .meta{color:var(--muted);font-size:13px;margin:6px 0 0}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  figure{margin:0 0 22px}
+  figure img{width:100%;display:block;border:1px solid var(--blue-200);border-radius:10px;
+             box-shadow:0 6px 22px rgba(0,53,107,.13);background:#fff}
+  figcaption{margin-top:9px;font-size:13px;color:var(--muted);font-style:italic}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0 0}
+  .facts div{background:var(--blue-50);border:1px solid var(--blue-200);border-radius:8px;padding:10px 13px}
+  .facts span{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .facts strong{font-size:15px;color:var(--navy)}
+  .paid{background:#f1faf4;border-left:3px solid var(--good);padding:11px 15px;border-radius:0 7px 7px 0;font-size:14.5px}
+  .note{background:#fffaf0;border:1px solid #e8d5a8;border-left:4px solid var(--gold);
+        border-radius:8px;padding:14px 18px;font-size:14.5px;margin:0 0 20px}
+  ul{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  footer{max-width:1180px;margin:0 auto;padding:0 26px 46px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <h1>Campus Customs — Resolved Board</h1>
+  <p>The React desk after each ticket was resolved &middot; shop date 2026-08-31 &middot; model gpt-6-luna</p>
+  <div class="totals">
+    <div><span>Started</span><strong>$3,400.00</strong></div>
+    <div><span>Paid out</span><strong>$3,240.00</strong></div>
+    <div><span>Ended</span><strong>$160.00</strong></div>
+    <div><span>Tickets resolved</span><strong>3 of 3</strong></div>
+    <div><span>Payments by agents</span><strong>0</strong></div>
+  </div>
+</div></header>
+
+<nav><div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true"  data-panel="s101">Ticket 101</button>
+  <button class="tab" role="tab" aria-selected="false" data-panel="s102">Ticket 102</button>
+  <button class="tab" role="tab" aria-selected="false" data-panel="s103">Ticket 103</button>
+</div></nav>
+
+<div class="wrap">
+
+  <section class="panel active" id="s101" role="tabpanel">
+    <div class="card">
+      <h2>Ticket 101 — Bulldog tee<span class="chip">&#10003; RESOLVED</span></h2>
+      <p class="meta">Tauhid Zaman · customer_order · run <span class="mono">api-20261015T032102Z-976aa0</span> · 30,432 in / 1,161 out tokens</p>
+      <div class="facts">
+        <div><span>Agents</span><strong>Boss → Inventory → Accounting</strong></div>
+        <div><span>Stock</span><strong>0 on hand, short 1</strong></div>
+        <div><span>Blocker</span><strong>invoice 501 unpaid</strong></div>
+        <div><span>Approved</span><strong>$840.00</strong></div>
+      </div>
+      <h3>Board after resolution</h3>
+      <figure>
+        <img src="screenshots/ticket-101-board.png" alt="The board with ticket 101 resolved, the team stage, and the approval card">
+        <figcaption>Ticket 101 flipped to ✓ RESOLVED. Boss, Inventory and Accounting carry their green checkmarks; Facilities and Customer Service were never called.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/ticket-101-detail.png" alt="Per-agent summary for ticket 101 showing the three agents, their tools, and the vendor draft">
+        <figcaption>The per-agent summary: Accounting's drafted $840.00 payment, Inventory's blocked-vendor finding, and the vendor request that stayed on the board — "Could you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?"</figcaption>
+      </figure>
+      <h3>Human approval</h3>
+      <p class="paid">Eduardo CS approved <strong>$840.00</strong> for invoice 501 → checking $3,400.00 → $2,560.00.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="s102" role="tabpanel">
+    <div class="card">
+      <h2>Ticket 102 — Rent due<span class="chip">&#10003; RESOLVED</span></h2>
+      <p class="meta">Elm City Properties · rent_notice · run <span class="mono">api-20261015T032508Z-277c0d</span> · 13,971 in / 492 out tokens</p>
+      <div class="facts">
+        <div><span>Agents</span><strong>Boss → Facilities</strong></div>
+        <div><span>Source</span><strong>the lease, not the email</strong></div>
+        <div><span>Due</span><strong>2026-09-02, 2 days out</strong></div>
+        <div><span>Approved</span><strong>$2,400.00</strong></div>
+      </div>
+      <h3>Board after resolution</h3>
+      <figure>
+        <img src="screenshots/ticket-102-board.png" alt="The board with tickets 101 and 102 resolved and the balance at $160.00">
+        <figcaption>101 and 102 both ✓ RESOLVED, Facilities carrying the checkmark, and the masthead balance down to $160.00 after two approved payments.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/ticket-102-detail.png" alt="Per-agent summary for ticket 102 and the cash card">
+        <figcaption>Facilities quoting the lease as authoritative, and the cash card showing both payments with their approver.</figcaption>
+      </figure>
+      <h3>Human approval</h3>
+      <p class="paid">Eduardo CS approved <strong>$2,400.00</strong> for lease 1 → checking $2,560.00 → $160.00.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="s103" role="tabpanel">
+    <div class="card">
+      <h2>Ticket 103 — Bulk hoodie discount<span class="chip">&#10003; RESOLVED</span></h2>
+      <p class="meta">Yale AI Club · price_override · run <span class="mono">api-20261015T032620Z-a6e46a</span> · 14,265 in / 533 out tokens</p>
+      <div class="facts">
+        <div><span>Agents</span><strong>Boss → Accounting</strong></div>
+        <div><span>Cost / list</span><strong>$22.00 / $58.00</strong></div>
+        <div><span>Margin at list</span><strong>$720.00 on 20</strong></div>
+        <div><span>Discount set</span><strong>none — escalated</strong></div>
+      </div>
+      <h3>Board after resolution</h3>
+      <figure>
+        <img src="screenshots/ticket-103-board.png" alt="The board with all three tickets resolved and Accounting highlighted">
+        <figcaption>All three ✓ RESOLVED. Accounting's summary shows the numbers; no approval card appears, because this ticket moves no money.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/ticket-103-detail.png" alt="Per-agent summary and live feed for ticket 103">
+        <figcaption>The live feed with every tool call recorded — <span class="mono">get_ticket</span> and <span class="mono">get_price_and_margin</span>, and nothing else.</figcaption>
+      </figure>
+      <h3>Human approval</h3>
+      <p class="paid">No payment. What awaits a person is the <strong>pricing decision itself</strong> — the database records no discount policy and no approval authority, so the agents returned the numbers and refused to choose a percentage. Cash unchanged at $160.00.</p>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>One bug these screenshots caught, now fixed.</strong> On 101 and 102 the approval
+    card stayed on screen after the payment had gone through, pricing it from a running total
+    rather than from the bill itself — so it read <em>"Paying $0.00"</em> on 101, and on 102
+    offered to pay rent again, showing a balance of <em>−$2,240.00</em>. The database was
+    always right ($160.00, two payments, no double charge); only the display was wrong.
+    <span class="mono">GET /cash</span> now returns each obligation with its own amount and a
+    paid flag, so the card disappears once settled and the arithmetic cannot go negative.
+    These images are the board as it was during the run, kept honest rather than retaken.
+  </div>
+</div>
+
+<footer>
+  Screenshots taken by Eduardo during the three live runs · the ending balance of $160.00
+  matches <span class="mono">cash_accounts</span> in the working database ·
+  agents prepared, a human approved, nothing was sent.
+</footer>
+
+<script>
+  var tabs = document.querySelectorAll('.tab');
+  function show(id){
+    document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('active', p.id===id) });
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.panel===id)) });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.panel) }) });
+</script>
+</body>
+</html>

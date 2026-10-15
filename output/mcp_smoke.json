@@ -1,0 +1,308 @@
+{
+  "test_run": {
+    "problem": "HW5 Problem 4 \u2014 add the MCP server to the vibe coder and test each tool",
+    "run_at": "2026-10-14T21:43:34-04:00",
+    "mcp_server": "campus-customs",
+    "registered_in": "../.mcp.json (project root)",
+    "transport": "stdio (server.py spawned as a subprocess, real MCP protocol round trip)",
+    "database_under_test": "data/campus_customs_new.db",
+    "tools_discovered": [
+      "check_stock",
+      "get_lease_payment",
+      "get_price_and_margin"
+    ],
+    "tools_discovered_count": 3
+  },
+  "ticket_tool_calls": [
+    {
+      "ticket": 101,
+      "ticket_type": "customer_order",
+      "prompt_to_vibe_coder": "Ticket 101: Tauhid Zaman wants a Classic Bulldog Tee in size S. Can we ship it today?",
+      "tool_called": "check_stock",
+      "arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty_needed": 1
+      },
+      "tool_output": {
+        "found": true,
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty_on_hand": 0,
+        "qty_needed": 1,
+        "can_fill": false,
+        "shortfall": 1,
+        "location": "Aisle B"
+      },
+      "verified_against_database": [
+        {
+          "field": "qty_on_hand",
+          "tool_returned": 0,
+          "database_says": 0,
+          "match": true
+        },
+        {
+          "field": "name",
+          "tool_returned": "Classic Bulldog Tee",
+          "database_says": "Classic Bulldog Tee",
+          "match": true
+        },
+        {
+          "field": "location",
+          "tool_returned": "Aisle B",
+          "database_says": "Aisle B",
+          "match": true
+        },
+        {
+          "field": "can_fill",
+          "tool_returned": false,
+          "database_says": false,
+          "match": true
+        },
+        {
+          "field": "shortfall",
+          "tool_returned": 1,
+          "database_says": 1,
+          "match": true
+        }
+      ],
+      "all_fields_match_database": true
+    },
+    {
+      "ticket": 102,
+      "ticket_type": "rent_notice",
+      "prompt_to_vibe_coder": "Ticket 102: we got an email from Elm City Properties saying the shop rent is due. How much do we actually owe on lease 1, and when is it due?",
+      "tool_called": "get_lease_payment",
+      "arguments": {
+        "lease_id": 1
+      },
+      "tool_output": {
+        "found": true,
+        "lease_id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "amount_due": 2400.0,
+        "next_due": "2026-09-02",
+        "as_of": "2026-08-31",
+        "days_until_due": 2,
+        "is_overdue": false,
+        "lease_notes": null
+      },
+      "verified_against_database": [
+        {
+          "field": "amount_due",
+          "tool_returned": 2400.0,
+          "database_says": 2400.0,
+          "match": true
+        },
+        {
+          "field": "next_due",
+          "tool_returned": "2026-09-02",
+          "database_says": "2026-09-02",
+          "match": true
+        },
+        {
+          "field": "landlord",
+          "tool_returned": "Elm City Properties",
+          "database_says": "Elm City Properties",
+          "match": true
+        },
+        {
+          "field": "space_name",
+          "tool_returned": "Chapel Street shop",
+          "database_says": "Chapel Street shop",
+          "match": true
+        },
+        {
+          "field": "as_of (desk date, not system clock)",
+          "tool_returned": "2026-08-31",
+          "database_says": "2026-08-31",
+          "match": true
+        },
+        {
+          "field": "days_until_due",
+          "tool_returned": 2,
+          "database_says": 2,
+          "match": true
+        },
+        {
+          "field": "is_overdue",
+          "tool_returned": false,
+          "database_says": false,
+          "match": true
+        }
+      ],
+      "all_fields_match_database": true
+    },
+    {
+      "ticket": 103,
+      "ticket_type": "price_override",
+      "prompt_to_vibe_coder": "Ticket 103: the Yale AI Club wants 20 navy hoodies in size M and is asking for a bulk discount. What is our cost and list price, and how much margin is on that order?",
+      "tool_called": "get_price_and_margin",
+      "arguments": {
+        "sku": "CC-HOOD-NAVY",
+        "qty": 20
+      },
+      "tool_output": {
+        "found": true,
+        "sku": "CC-HOOD-NAVY",
+        "name": "Basic Hoodie Big Yale",
+        "unit_cost": 22.0,
+        "list_price": 58.0,
+        "unit_margin": 36.0,
+        "margin_pct_of_list": 62.1,
+        "qty": 20,
+        "order_total_at_list": 1160.0,
+        "order_total_at_cost": 440.0,
+        "order_margin_at_list": 720.0,
+        "discount_authority_in_database": false,
+        "note": "No discount policy or approval authority is recorded in this database. Any discount must be approved outside these tools."
+      },
+      "verified_against_database": [
+        {
+          "field": "unit_cost",
+          "tool_returned": 22.0,
+          "database_says": 22.0,
+          "match": true
+        },
+        {
+          "field": "list_price",
+          "tool_returned": 58.0,
+          "database_says": 58.0,
+          "match": true
+        },
+        {
+          "field": "unit_margin",
+          "tool_returned": 36.0,
+          "database_says": 36.0,
+          "match": true
+        },
+        {
+          "field": "order_total_at_list",
+          "tool_returned": 1160.0,
+          "database_says": 1160.0,
+          "match": true
+        },
+        {
+          "field": "order_total_at_cost",
+          "tool_returned": 440.0,
+          "database_says": 440.0,
+          "match": true
+        },
+        {
+          "field": "name",
+          "tool_returned": "Basic Hoodie Big Yale",
+          "database_says": "Basic Hoodie Big Yale",
+          "match": true
+        },
+        {
+          "field": "discount_authority_in_database",
+          "tool_returned": false,
+          "database_says": false,
+          "match": true
+        }
+      ],
+      "all_fields_match_database": true
+    }
+  ],
+  "never_invent_checks": [
+    {
+      "prompt_to_vibe_coder": "Do we have a blue cap in size M?",
+      "tool_called": "check_stock",
+      "arguments": {
+        "sku": "CC-HAT-BLUE",
+        "size": "M"
+      },
+      "tool_output": {
+        "found": false,
+        "sku": "CC-HAT-BLUE",
+        "size": "M",
+        "reason": "No inventory row for CC-HAT-BLUE in size M.",
+        "sizes_carried": [
+          "OS"
+        ]
+      },
+      "expected_behaviour": "found=False, and sizes_carried lists only the sizes really in the table",
+      "behaved_correctly": true
+    },
+    {
+      "prompt_to_vibe_coder": "How many CC-FAKE-999 do we have in size M?",
+      "tool_called": "check_stock",
+      "arguments": {
+        "sku": "CC-FAKE-999",
+        "size": "M"
+      },
+      "tool_output": {
+        "found": false,
+        "sku": "CC-FAKE-999",
+        "size": "M",
+        "reason": "No inventory rows exist for SKU CC-FAKE-999.",
+        "sizes_carried": []
+      },
+      "expected_behaviour": "found=False, no invented stock figure",
+      "behaved_correctly": true
+    },
+    {
+      "prompt_to_vibe_coder": "What is the rent on lease 99?",
+      "tool_called": "get_lease_payment",
+      "arguments": {
+        "lease_id": 99
+      },
+      "tool_output": {
+        "found": false,
+        "lease_id": 99,
+        "reason": "No lease with id 99."
+      },
+      "expected_behaviour": "found=False, no invented amount",
+      "behaved_correctly": true
+    },
+    {
+      "prompt_to_vibe_coder": "What does CC-FAKE-999 cost us and what do we sell it for?",
+      "tool_called": "get_price_and_margin",
+      "arguments": {
+        "sku": "CC-FAKE-999"
+      },
+      "tool_output": {
+        "found": false,
+        "sku": "CC-FAKE-999",
+        "reason": "No pricing row for SKU CC-FAKE-999; cost and list price are unknown."
+      },
+      "expected_behaviour": "found=False, no invented price",
+      "behaved_correctly": true
+    }
+  ],
+  "database_integrity": {
+    "md5_before": "46effb90d8811f03e219ea9b5fbdfa5a",
+    "md5_after": "46effb90d8811f03e219ea9b5fbdfa5a",
+    "unchanged": true,
+    "note": "All three tools open the database read-only; the smoke test must not alter it."
+  },
+  "tool_ticket_mapping": {
+    "rule": "Each open ticket is unlocked by exactly one tool, and each tool serves exactly one ticket.",
+    "mapping": {
+      "101": "check_stock",
+      "102": "get_lease_payment",
+      "103": "get_price_and_margin"
+    },
+    "tickets_covered": [
+      101,
+      102,
+      103
+    ],
+    "tools_exercised": [
+      "check_stock",
+      "get_lease_payment",
+      "get_price_and_margin"
+    ],
+    "is_one_to_one": true
+  },
+  "summary": {
+    "ticket_calls_run": 3,
+    "ticket_calls_matching_database": 3,
+    "field_level_comparisons": 19,
+    "never_invent_checks_run": 4,
+    "never_invent_checks_passed": 4,
+    "all_passed": true
+  }
+}

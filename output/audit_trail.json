@@ -1,0 +1,4506 @@
+{
+  "audit_trail": {
+    "description": "Append-only audit trail for the Campus Customs agent team. Each entry in 'runs' is one end-to-end run; 'steps' within it are ordered agent actions, delegations and MCP tool calls. Never truncated between runs.",
+    "run_count": 30,
+    "runs": [
+      {
+        "run_id": "run-20261015T021459Z-a402a7",
+        "started_at": "2026-10-14T22:14:59.866084-04:00",
+        "finished_at": "2026-10-14T22:15:06.356980-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          102
+        ],
+        "decisions": [
+          {
+            "ticket_id": 102,
+            "assigned_to": "facilities",
+            "instruction_given": "Please review rent ticket 102 for lease 1. The requester says in the email that rent is due in 2 days; confirm the authoritative amount owed and due date from the lease record so I can decide how to handle the notice.",
+            "decision": "The notice matches the lease timing: $2,400 is due September 2, 2026. Use the lease record as authoritative; payment has not been initiated.",
+            "rationale": "Ticket 102 is a rent notice linked to lease 1. Facilities confirmed the lease records $2,400 due September 2, 2026, matching the email\u2019s two-day timing as of August 31.",
+            "needs_human_approval": false,
+            "awaiting_human": null
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:15:01.353069-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 46,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:15:01.840640-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review rent ticket 102 for lease 1. The requester says in the email that rent is due in 2 days; confirm the authoritative amount owed and due date from the lease record so I can decide how to handle the notice.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> facilities"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:15:02.317924-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:15:02.319476-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_lease_payment",
+            "tool_args": {
+              "lease_id": 1
+            },
+            "tool_result": {
+              "found": true,
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "amount_due": 2400.0,
+              "next_due": "2026-09-02",
+              "as_of": "2026-08-31",
+              "days_until_due": 2,
+              "is_overdue": false,
+              "lease_notes": null
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:15:02.696738-04:00",
+            "agent": "facilities",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review rent ticket 102 for lease 1. The requester says in the email that rent is due in 2 days; confirm the authoritative amount owed and due date from the lease record so I can decide how to handle the notice.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "The lease records $2,400 owed to Elm City Properties for the Chapel Street shop, due September 2, 2026\u20142 days from the lease\u2019s August 31 date. That matches the email\u2019s \u201cdue in 2 days\u201d timing; the lease is the authoritative source for the amount and date.",
+              "facts_used": [
+                "get_ticket: ticket 102 is an open rent notice from Elm City Properties; its note says rent is due in 2 days (as of 2026-08-31).",
+                "get_lease_payment: lease 1 records $2,400 due to Elm City Properties on 2026-09-02, 2 days after 2026-08-31."
+              ],
+              "recommended_action": "Use the lease record to assess the notice; if rent should be paid, ask Accounting to prepare a payment draft for human approval.",
+              "needs_human_approval": false,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9462,
+            "output_tokens": 338,
+            "duration_ms": 856,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:15:06.356217-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": "Ticket 102 is open. Read it with get_ticket, delegate it to the one specialist best suited, and give your final decision. Keep it brief.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 102,
+              "assigned_to": "facilities",
+              "instruction_given": "Please review rent ticket 102 for lease 1. The requester says in the email that rent is due in 2 days; confirm the authoritative amount owed and due date from the lease record so I can decide how to handle the notice.",
+              "decision": "The notice matches the lease timing: $2,400 is due September 2, 2026. Use the lease record as authoritative; payment has not been initiated.",
+              "rationale": "Ticket 102 is a rent notice linked to lease 1. Facilities confirmed the lease records $2,400 due September 2, 2026, matching the email\u2019s two-day timing as of August 31.",
+              "needs_human_approval": false,
+              "awaiting_human": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12140,
+            "output_tokens": 511,
+            "duration_ms": 5986,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 12140,
+        "total_output_tokens": 511,
+        "payments_made": 0,
+        "notes": "Models used: ['gpt-6-luna']. Payments executed by agents: 0 (must be 0 \u2014 only humans pay)."
+      },
+      {
+        "run_id": "run-20261015T021519Z-59796d",
+        "started_at": "2026-10-14T22:15:19.033544-04:00",
+        "finished_at": "2026-10-14T22:15:43.641618-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          101,
+          103
+        ],
+        "decisions": [
+          {
+            "ticket_id": 101,
+            "assigned_to": "inventory",
+            "instruction_given": "For ticket 101 (CC-TEE-WHITE, size S, quantity 1), please check whether we can fill the customer order today and report the stock result.",
+            "decision": "We cannot fill the order today; the requested tee is out of stock. The order is blocked pending restock.",
+            "rationale": "Inventory reported 0 units on hand for CC-TEE-WHITE, size S, against 1 requested (shortfall 1).",
+            "needs_human_approval": false,
+            "awaiting_human": null
+          },
+          {
+            "ticket_id": 103,
+            "assigned_to": "accounting",
+            "instruction_given": "For ticket 103, please check recorded cost, list price, and order totals/margin for 20 CC-HOOD-NAVY hoodies. The student organization asks for a bulk discount; report what the data supports and any missing discount policy/approval constraints.",
+            "decision": "Accounting reports list pricing yields $720 total margin on the 20 hoodies. The database has no discount policy or approval authority, so no discount percentage can be set; a human must decide and approve any discount.",
+            "rationale": "Ticket 103 notes Yale AI Club requests a bulk discount for 20 size M CC-HOOD-NAVY hoodies. Accounting found unit cost $22 and list price $58; records contain no discount policy or approval authority.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human decision and approval of any bulk discount."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:15:22.219224-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 50,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:15:24.599941-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "For ticket 101 (CC-TEE-WHITE, size S, quantity 1), please check whether we can fill the customer order today and report the stock result.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> inventory"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:15:26.840400-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:15:29.152299-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "For ticket 101 (CC-TEE-WHITE, size S, quantity 1), please check whether we can fill the customer order today and report the stock result.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "CC-TEE-WHITE in size S has 0 units on hand; the requested quantity is 1, so we cannot fill the order today. The shortfall is 1 unit.",
+              "facts_used": [
+                "check_stock: qty_on_hand 0, qty_needed 1, can_fill false, shortfall 1 for CC-TEE-WHITE size S."
+              ],
+              "recommended_action": "none",
+              "needs_human_approval": false,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9339,
+            "output_tokens": 206,
+            "duration_ms": 4552,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:15:31.609044-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": "Ticket 101 is open. Read it with get_ticket, delegate it to the one specialist best suited, and give your final decision. Keep it brief.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 101,
+              "assigned_to": "inventory",
+              "instruction_given": "For ticket 101 (CC-TEE-WHITE, size S, quantity 1), please check whether we can fill the customer order today and report the stock result.",
+              "decision": "We cannot fill the order today; the requested tee is out of stock. The order is blocked pending restock.",
+              "rationale": "Inventory reported 0 units on hand for CC-TEE-WHITE, size S, against 1 requested (shortfall 1).",
+              "needs_human_approval": false,
+              "awaiting_human": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 11909,
+            "output_tokens": 330,
+            "duration_ms": 12091,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:15:33.393506-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 5,
+            "note": null
+          },
+          {
+            "step": 7,
+            "at": "2026-10-14T22:15:35.882230-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "For ticket 103, please check recorded cost, list price, and order totals/margin for 20 CC-HOOD-NAVY hoodies. The student organization asks for a bulk discount; report what the data supports and any missing discount policy/approval constraints.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> accounting"
+          },
+          {
+            "step": 8,
+            "at": "2026-10-14T22:15:37.497858-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 29,
+            "note": null
+          },
+          {
+            "step": 9,
+            "at": "2026-10-14T22:15:37.499114-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_price_and_margin",
+            "tool_args": {
+              "sku": "CC-HOOD-NAVY",
+              "qty": 20
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-HOOD-NAVY",
+              "name": "Basic Hoodie Big Yale",
+              "unit_cost": 22.0,
+              "list_price": 58.0,
+              "unit_margin": 36.0,
+              "margin_pct_of_list": 62.1,
+              "qty": 20,
+              "order_total_at_list": 1160.0,
+              "order_total_at_cost": 440.0,
+              "order_margin_at_list": 720.0,
+              "discount_authority_in_database": false,
+              "note": "No discount policy or approval authority is recorded in this database. Any discount must be approved outside these tools."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 31,
+            "note": null
+          },
+          {
+            "step": 10,
+            "at": "2026-10-14T22:15:40.514930-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "For ticket 103, please check recorded cost, list price, and order totals/margin for 20 CC-HOOD-NAVY hoodies. The student organization asks for a bulk discount; report what the data supports and any missing discount policy/approval constraints.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "For 20 CC-HOOD-NAVY hoodies, recorded unit cost is $22 and list price is $58; totals are $440 at cost and $1,160 at list, leaving $720 margin at list (62.1% of list per unit). The data sets the cost floor and list-price ceiling, but records no discount policy or approval authority, so it does not support choosing a bulk-discount percentage.",
+              "facts_used": [
+                "Ticket 103: size M, quantity 20, requester Yale AI Club, notes request a bulk discount (get_ticket).",
+                "Unit cost $22, list price $58, unit margin $36, margin 62.1%, totals and no recorded discount policy/authority (get_price_and_margin)."
+              ],
+              "recommended_action": "A human should decide and approve any discount; no percentage is recommended by the database.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": "The database contains no discount policy or approval authority.",
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9692,
+            "output_tokens": 359,
+            "duration_ms": 4632,
+            "note": null
+          },
+          {
+            "step": 11,
+            "at": "2026-10-14T22:15:43.639958-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "human",
+            "prompt": "Ticket 103 is open. Read it with get_ticket, delegate it to the one specialist best suited, and give your final decision. Keep it brief.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 103,
+              "assigned_to": "accounting",
+              "instruction_given": "For ticket 103, please check recorded cost, list price, and order totals/margin for 20 CC-HOOD-NAVY hoodies. The student organization asks for a bulk discount; report what the data supports and any missing discount policy/approval constraints.",
+              "decision": "Accounting reports list pricing yields $720 total margin on the 20 hoodies. The database has no discount policy or approval authority, so no discount percentage can be set; a human must decide and approve any discount.",
+              "rationale": "Ticket 103 notes Yale AI Club requests a bulk discount for 20 size M CC-HOOD-NAVY hoodies. Accounting found unit cost $22 and list price $58; records contain no discount policy or approval authority.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human decision and approval of any bulk discount."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12396,
+            "output_tokens": 556,
+            "duration_ms": 12030,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 24305,
+        "total_output_tokens": 886,
+        "payments_made": 0,
+        "notes": "Models used: ['gpt-6-luna']. Payments executed by agents: 0 (must be 0 \u2014 only humans pay)."
+      },
+      {
+        "run_id": "verify-20261015T021715Z",
+        "started_at": "2026-10-14T22:17:15.499766-04:00",
+        "finished_at": "2026-10-14T22:17:30.441433-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:17:16.109202-04:00",
+            "agent": "boss",
+            "event": "refusal",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Delegation budget exhausted; refused to ask inventory."
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:17:16.109253-04:00",
+            "agent": "inventory",
+            "event": "refusal",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "inventory is already working on this ticket; refused to re-enter."
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:17:20.090961-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 44,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:17:22.468818-04:00",
+            "agent": "inventory",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Please draft a reply to Tauhid Zaman about Ticket 101 (Bulldog tee, SKU CC-TEE-WHITE, size S, quantity 1). We are checking the stock figure; please avoid stating availability or promising a restock unless supported. Return only your customer-facing draft.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "inventory -> customer_service"
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:17:22.482569-04:00",
+            "agent": "customer_service",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 13,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:17:24.337183-04:00",
+            "agent": "customer_service",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 3,
+            "note": null
+          },
+          {
+            "step": 7,
+            "at": "2026-10-14T22:17:24.337533-04:00",
+            "agent": "customer_service",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 3,
+            "note": null
+          },
+          {
+            "step": 8,
+            "at": "2026-10-14T22:17:27.739904-04:00",
+            "agent": "customer_service",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Please draft a reply to Tauhid Zaman about Ticket 101 (Bulldog tee, SKU CC-TEE-WHITE, size S, quantity 1). We are checking the stock figure; please avoid stating availability or promising a restock unless supported. Return only your customer-facing draft.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Drafted a reply to Tauhid Zaman based on Ticket 101 and the stock lookup.",
+              "facts_used": [
+                "Ticket 101 lists Tauhid Zaman, Classic Bulldog Tee, size S, quantity 1, and notes he needs a tee in size S (get_ticket).",
+                "Size S has 0 units on hand and cannot fill the quantity of 1 (check_stock)."
+              ],
+              "recommended_action": "Send the draft to Tauhid.",
+              "needs_human_approval": false,
+              "blocked_on_missing_data": null,
+              "draft_message": "Hello Tauhid,\n\nThank you for reaching out about the Classic Bulldog Tee in size S. I\u2019m sorry, but we don\u2019t currently have one available. We don\u2019t yet have a restock date to share, but we\u2019ll be in touch when we have an update.\n\nWarm regards,\nCustomer Service"
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9566,
+            "output_tokens": 392,
+            "duration_ms": 5271,
+            "note": null
+          },
+          {
+            "step": 9,
+            "at": "2026-10-14T22:17:30.441338-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Ticket 101 requests 1 Classic Bulldog Tee in size S; stock is 0 on hand, a shortfall of 1. Customer Service drafted the reply below.",
+              "facts_used": [
+                "Ticket 101 details (get_ticket)",
+                "0 on hand, quantity needed 1, shortfall 1 (check_stock)",
+                "Customer Service reply draft (ask_customer_service)"
+              ],
+              "recommended_action": "Send Customer Service\u2019s draft to Tauhid Zaman.",
+              "needs_human_approval": false,
+              "blocked_on_missing_data": null,
+              "draft_message": "Hello Tauhid,\n\nThank you for reaching out about the Classic Bulldog Tee in size S. I\u2019m sorry, but we don\u2019t currently have one available. We don\u2019t yet have a restock date to share, but we\u2019ll be in touch when we have an update.\n\nWarm regards,\nCustomer Service"
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12368,
+            "output_tokens": 580,
+            "duration_ms": null,
+            "note": "Connectivity check: specialist delegating to specialist, no Boss in the chain."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Wiring verification: 13/13 passed."
+      },
+      {
+        "run_id": "api-20261015T024325Z-485396",
+        "started_at": "2026-10-14T22:43:25.621278-04:00",
+        "finished_at": "2026-10-14T22:43:40.706924-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          102
+        ],
+        "decisions": [
+          {
+            "ticket_id": 102,
+            "assigned_to": "facilities",
+            "instruction_given": "For ticket 102, please check lease 1 for the authoritative rent amount owed and due date. The note says the rent is due in 2 days; verify against the lease record.",
+            "decision": "Lease 1 records $2,400 due September 2, 2026, matching the ticket note that rent is due in two days. The payment has not been prepared; it is awaiting human approval.",
+            "rationale": "Ticket 102 is a rent_notice linked to lease 1. Facilities confirmed the recorded amount, due date, and two-day interval as of August 31, 2026.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval is required before preparing or making the $2,400 rent payment."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:43:31.053947-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 57,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:43:33.230125-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "For ticket 102, please check lease 1 for the authoritative rent amount owed and due date. The note says the rent is due in 2 days; verify against the lease record.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> facilities"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:43:35.169792-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:43:35.170261-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_lease_payment",
+            "tool_args": {
+              "lease_id": 1
+            },
+            "tool_result": {
+              "found": true,
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "amount_due": 2400.0,
+              "next_due": "2026-09-02",
+              "as_of": "2026-08-31",
+              "days_until_due": 2,
+              "is_overdue": false,
+              "lease_notes": null
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 11,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:43:37.412565-04:00",
+            "agent": "facilities",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "For ticket 102, please check lease 1 for the authoritative rent amount owed and due date. The note says the rent is due in 2 days; verify against the lease record.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "The lease records $2,400 owed to Elm City Properties, due September 2, 2026\u20142 days from the lease\u2019s August 31 date. That confirms the ticket note\u2019s \u201cdue in 2 days.\u201d",
+              "facts_used": [
+                "get_ticket (ticket 102): note says rent due in 2 days; lease_id 1.",
+                "get_lease_payment (lease 1): landlord Elm City Properties, amount_due $2,400, next_due 2026-09-02, days_until_due 2, as_of 2026-08-31."
+              ],
+              "recommended_action": "Ask Accounting to prepare the rent payment draft for human approval.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9486,
+            "output_tokens": 281,
+            "duration_ms": 4182,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:43:40.706804-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": "Ticket 102 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist. Give your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 102,
+              "assigned_to": "facilities",
+              "instruction_given": "For ticket 102, please check lease 1 for the authoritative rent amount owed and due date. The note says the rent is due in 2 days; verify against the lease record.",
+              "decision": "Lease 1 records $2,400 due September 2, 2026, matching the ticket note that rent is due in two days. The payment has not been prepared; it is awaiting human approval.",
+              "rationale": "Ticket 102 is a rent_notice linked to lease 1. Facilities confirmed the recorded amount, due date, and two-day interval as of August 31, 2026.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval is required before preparing or making the $2,400 rent payment."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12136,
+            "output_tokens": 459,
+            "duration_ms": 15085,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 12136,
+        "total_output_tokens": 459,
+        "payments_made": 0,
+        "notes": "API run for ticket 102. Routing match: {'has_expectation': True, 'expected_first': 'facilities', 'expected_then': 'accounting', 'actual_specialists': ['facilities'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'expected_tools': ['get_ticket', 'get_lease_payment', 'get_cash_position', 'prepare_payment'], 'actual_tools': ['get_lease_payment', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "approval-20261015T024411Z",
+        "started_at": "2026-10-14T22:44:11.831130-04:00",
+        "finished_at": "2026-10-14T22:44:11.831257-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:11.831210-04:00",
+            "agent": "accounting",
+            "event": "refusal",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "Accounting"
+            },
+            "tool_result": {
+              "paid": false,
+              "refused": "'Accounting' is an agent, not a human. Payments must be approved by a person."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Accounting. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=False"
+      },
+      {
+        "run_id": "approval-20261015T024412Z",
+        "started_at": "2026-10-14T22:44:12.460218-04:00",
+        "finished_at": "2026-10-14T22:44:12.460252-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:12.460235-04:00",
+            "agent": "accounting",
+            "event": "refusal",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "boss"
+            },
+            "tool_result": {
+              "paid": false,
+              "refused": "'boss' is an agent, not a human. Payments must be approved by a person."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by boss. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=False"
+      },
+      {
+        "run_id": "approval-20261015T024413Z",
+        "started_at": "2026-10-14T22:44:13.092583-04:00",
+        "finished_at": "2026-10-14T22:44:13.092618-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:13.092600-04:00",
+            "agent": "accounting",
+            "event": "refusal",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "ai"
+            },
+            "tool_result": {
+              "paid": false,
+              "refused": "'ai' is an agent, not a human. Payments must be approved by a person."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by ai. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=False"
+      },
+      {
+        "run_id": "approval-20261015T024413Z",
+        "started_at": "2026-10-14T22:44:13.713232-04:00",
+        "finished_at": "2026-10-14T22:44:13.713263-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:13.713246-04:00",
+            "agent": "accounting",
+            "event": "refusal",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "invoice",
+              "ref_id": 999,
+              "approved_by": "Eduardo Casarrubias"
+            },
+            "tool_result": {
+              "paid": false,
+              "refused": "No invoice row with id 999."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Eduardo Casarrubias. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=False"
+      },
+      {
+        "run_id": "approval-20261015T024422Z",
+        "started_at": "2026-10-14T22:44:22.065558-04:00",
+        "finished_at": "2026-10-14T22:44:22.065590-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:22.065573-04:00",
+            "agent": "accounting",
+            "event": "approval",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "Route Verification (test approver)"
+            },
+            "tool_result": {
+              "paid": true,
+              "payment_id": 1,
+              "kind": "rent",
+              "ref_id": 1,
+              "amount": 2400.0,
+              "paid_at": "2026-08-31",
+              "approved_by": "Route Verification (test approver)",
+              "balance_before": 3400.0,
+              "balance_after": 1000.0,
+              "tables_updated": [
+                "payments",
+                "cash_accounts"
+              ]
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Route Verification (test approver). No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=True"
+      },
+      {
+        "run_id": "reset-20261015T024429Z",
+        "started_at": "2026-10-14T22:44:29.111056-04:00",
+        "finished_at": "2026-10-14T22:44:29.111828-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:29.111386-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 1000.0, 'payments': 1, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "api-20261015T024440Z-fe8cbf",
+        "started_at": "2026-10-14T22:44:40.371458-04:00",
+        "finished_at": "2026-10-14T22:44:55.327469-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          101
+        ],
+        "decisions": [
+          {
+            "ticket_id": 101,
+            "assigned_to": "inventory",
+            "instruction_given": "Could you check ticket 101 for CC-TEE-WHITE in size S, quantity 1, and let me know whether the order can be filled today? The notes say the requester needs a tee in size S.",
+            "decision": "The order cannot be filled today because there are no CC-TEE-WHITE tees in size S on hand. Restocking is a possible next step, but a needed-by date is missing, so timing cannot be stated.",
+            "rationale": "Ticket 101 requests one CC-TEE-WHITE, size S; Inventory reported 0 on hand and a shortfall of 1. Inventory noted that the needed-by date was not provided.",
+            "needs_human_approval": false,
+            "awaiting_human": null
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:45.403320-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 11,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:44:47.633997-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check ticket 101 for CC-TEE-WHITE in size S, quantity 1, and let me know whether the order can be filled today? The notes say the requester needs a tee in size S.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> inventory"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:44:49.587391-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 18,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:44:49.587825-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 18,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:44:52.417484-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check ticket 101 for CC-TEE-WHITE in size S, quantity 1, and let me know whether the order can be filled today? The notes say the requester needs a tee in size S.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Ticket 101 requests 1 CC-TEE-WHITE in size S. On hand is 0, so the order cannot be filled today; the shortfall is 1 unit.",
+              "facts_used": [
+                "Ticket details and requested quantity from get_ticket (ticket 101).",
+                "qty_on_hand 0, can_fill false, and shortfall 1 from check_stock (CC-TEE-WHITE, size S)."
+              ],
+              "recommended_action": "Find a restock vendor for CC-TEE-WHITE and request 1 in size S by the needed date.",
+              "needs_human_approval": false,
+              "blocked_on_missing_data": "The needed-by date was not provided, so a specific vendor request and arrival timing cannot yet be stated.",
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 9576,
+            "output_tokens": 299,
+            "duration_ms": 4783,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:44:55.327348-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": "Ticket 101 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist. Give your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 101,
+              "assigned_to": "inventory",
+              "instruction_given": "Could you check ticket 101 for CC-TEE-WHITE in size S, quantity 1, and let me know whether the order can be filled today? The notes say the requester needs a tee in size S.",
+              "decision": "The order cannot be filled today because there are no CC-TEE-WHITE tees in size S on hand. Restocking is a possible next step, but a needed-by date is missing, so timing cannot be stated.",
+              "rationale": "Ticket 101 requests one CC-TEE-WHITE, size S; Inventory reported 0 on hand and a shortfall of 1. Inventory noted that the needed-by date was not provided.",
+              "needs_human_approval": false,
+              "awaiting_human": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12229,
+            "output_tokens": 465,
+            "duration_ms": 14955,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 12229,
+        "total_output_tokens": 465,
+        "payments_made": 0,
+        "notes": "API run for ticket 101. Routing match: {'has_expectation': True, 'expected_first': 'inventory', 'expected_then': 'customer_service', 'actual_specialists': ['inventory'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'expected_tools': ['get_ticket', 'check_stock', 'find_restock_vendor'], 'actual_tools': ['check_stock', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "api-20261015T024455Z-b4c2c8",
+        "started_at": "2026-10-14T22:44:55.353494-04:00",
+        "finished_at": "2026-10-14T22:45:11.987111-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          103
+        ],
+        "decisions": [
+          {
+            "ticket_id": 103,
+            "assigned_to": "accounting",
+            "instruction_given": "Please review ticket 103: Yale AI Club asks for a bulk discount on 20 CC-HOOD-NAVY hoodies, size M. Check recorded price and margin and advise what can be decided; note any missing discount policy or approval limits.",
+            "decision": "Do not set or grant a discount from the available records; the discount policy and approval authority are not recorded. Refer the discount decision to a person with authority.",
+            "rationale": "Accounting reported $22 unit cost and $58 list price ($36 unit margin; $720 total margin at list for 20). The database contains no discount policy or approval authority.",
+            "needs_human_approval": true,
+            "awaiting_human": "A person with authority to decide whether to grant a discount; no discount percentage is supported by the records."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:44:58.804134-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:45:01.366958-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 103: Yale AI Club asks for a bulk discount on 20 CC-HOOD-NAVY hoodies, size M. Check recorded price and margin and advise what can be decided; note any missing discount policy or approval limits.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> accounting"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:45:03.037879-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 14,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:45:04.896489-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_price_and_margin",
+            "tool_args": {
+              "sku": "CC-HOOD-NAVY",
+              "qty": 20
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-HOOD-NAVY",
+              "name": "Basic Hoodie Big Yale",
+              "unit_cost": 22.0,
+              "list_price": 58.0,
+              "unit_margin": 36.0,
+              "margin_pct_of_list": 62.1,
+              "qty": 20,
+              "order_total_at_list": 1160.0,
+              "order_total_at_cost": 440.0,
+              "order_margin_at_list": 720.0,
+              "discount_authority_in_database": false,
+              "note": "No discount policy or approval authority is recorded in this database. Any discount must be approved outside these tools."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:45:08.950584-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 103: Yale AI Club asks for a bulk discount on 20 CC-HOOD-NAVY hoodies, size M. Check recorded price and margin and advise what can be decided; note any missing discount policy or approval limits.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "For 20 CC-HOOD-NAVY hoodies, recorded unit cost is $22 and list price is $58, leaving $36 per unit ($720 total at list) above cost; the order totals are $440 at cost and $1,160 at list. The database records no discount policy or approval authority, so it supports these floor/ceiling figures but not a discount percentage or a decision to grant one.",
+              "facts_used": [
+                "Ticket 103: requester Yale AI Club, 20 CC-HOOD-NAVY hoodies, size M, asking for a bulk discount (get_ticket).",
+                "Unit cost $22, list price $58, unit margin $36, total at list $1,160, total at cost $440, total margin at list $720, and no recorded discount policy/authority (get_price_and_margin)."
+              ],
+              "recommended_action": "A person with authority should decide whether to grant a discount; no percentage can be set from the database.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": "Discount policy and approval authority are not recorded.",
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 12139,
+            "output_tokens": 366,
+            "duration_ms": 7583,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:45:11.987013-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "human",
+            "prompt": "Ticket 103 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist. Give your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 103,
+              "assigned_to": "accounting",
+              "instruction_given": "Please review ticket 103: Yale AI Club asks for a bulk discount on 20 CC-HOOD-NAVY hoodies, size M. Check recorded price and margin and advise what can be decided; note any missing discount policy or approval limits.",
+              "decision": "Do not set or grant a discount from the available records; the discount policy and approval authority are not recorded. Refer the discount decision to a person with authority.",
+              "rationale": "Accounting reported $22 unit cost and $58 list price ($36 unit margin; $720 total margin at list for 20). The database contains no discount policy or approval authority.",
+              "needs_human_approval": true,
+              "awaiting_human": "A person with authority to decide whether to grant a discount; no discount percentage is supported by the records."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 14885,
+            "output_tokens": 551,
+            "duration_ms": 16633,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 14885,
+        "total_output_tokens": 551,
+        "payments_made": 0,
+        "notes": "API run for ticket 103. Routing match: {'has_expectation': True, 'expected_first': 'accounting', 'expected_then': 'customer_service', 'actual_specialists': ['accounting'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'expected_tools': ['get_ticket', 'get_price_and_margin'], 'actual_tools': ['get_price_and_margin', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "reset-20261015T025043Z",
+        "started_at": "2026-10-14T22:50:43.459781-04:00",
+        "finished_at": "2026-10-14T22:50:43.460085-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:50:43.459972-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 100.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "reset-20261015T025145Z",
+        "started_at": "2026-10-14T22:51:45.652700-04:00",
+        "finished_at": "2026-10-14T22:51:45.652835-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:51:45.652768-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "reset-20261015T025252Z",
+        "started_at": "2026-10-14T22:52:52.889946-04:00",
+        "finished_at": "2026-10-14T22:52:52.890082-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:52:52.890025-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "api-20261015T025252Z-21cdec",
+        "started_at": "2026-10-14T22:52:52.892111-04:00",
+        "finished_at": "2026-10-14T22:53:05.929132-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          101
+        ],
+        "decisions": [
+          {
+            "ticket_id": 101,
+            "assigned_to": "inventory",
+            "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+            "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:52:54.681789-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 75,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:52:55.183256-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> inventory"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:52:55.529804-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:52:55.530143-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:52:55.989709-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "find_restock_vendor",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE"
+            },
+            "tool_result": {
+              "sku": "CC-TEE-WHITE",
+              "as_of": "2026-08-31",
+              "vendors": [
+                {
+                  "id": 3,
+                  "name": "QuickShip CT",
+                  "specialty": "local courier",
+                  "lead_days": 1,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-01",
+                  "earliest_arrival_once_unblocked": "2026-09-01"
+                },
+                {
+                  "id": 2,
+                  "name": "Elm City Gifts",
+                  "specialty": "mugs and small goods",
+                  "lead_days": 3,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-03",
+                  "earliest_arrival_once_unblocked": "2026-09-03"
+                },
+                {
+                  "id": 1,
+                  "name": "Bulldog Print Co",
+                  "specialty": "apparel reprint",
+                  "lead_days": 5,
+                  "can_ship": false,
+                  "blocked_reason": "Vendor will not ship while 1 unpaid invoice(s) totalling $840.00 remain open. Clear invoice 501 first.",
+                  "amount_owed_to_vendor": 840.0,
+                  "earliest_arrival_if_ordered_today": null,
+                  "earliest_arrival_once_unblocked": "2026-09-05"
+                }
+              ],
+              "vendors_able_to_ship": [
+                "QuickShip CT",
+                "Elm City Gifts"
+              ],
+              "vendors_blocked": [
+                "Bulldog Print Co"
+              ],
+              "prior_supply_evidence": [
+                {
+                  "invoice_id": 501,
+                  "vendor_id": 1,
+                  "vendor_name": "Bulldog Print Co",
+                  "description": "Rush reprint CC-TEE-WHITE S",
+                  "status": "open",
+                  "amount": 840.0
+                }
+              ],
+              "note": "No SKU-to-vendor mapping exists in this database. Vendor specialty text and prior invoices are the only evidence; choose on that basis and say which you used. Lead times are the vendors table's own lead_days. A vendor with an open unpaid invoice will not ship new product until that invoice is cleared."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:52:56.348321-04:00",
+            "agent": "inventory",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "inventory -> accounting"
+          },
+          {
+            "step": 7,
+            "at": "2026-10-14T22:52:56.692222-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_invoice",
+            "tool_args": {
+              "invoice_id": 501
+            },
+            "tool_result": {
+              "found": true,
+              "invoice_id": 501,
+              "vendor_id": 1,
+              "vendor_name": "Bulldog Print Co",
+              "vendor_lead_days": 5,
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "status": "open",
+              "description": "Rush reprint CC-TEE-WHITE S",
+              "as_of": "2026-08-31",
+              "days_until_due": -3,
+              "is_overdue": true
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 15,
+            "note": null
+          },
+          {
+            "step": 8,
+            "at": "2026-10-14T22:52:56.693302-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 15,
+            "note": null
+          },
+          {
+            "step": 9,
+            "at": "2026-10-14T22:52:56.693444-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_cash_position",
+            "tool_args": {},
+            "tool_result": {
+              "as_of": "2026-08-31",
+              "accounts": [
+                {
+                  "name": "checking",
+                  "balance": 3400.0,
+                  "date": "2026-08-31"
+                }
+              ],
+              "total_cash": 3400.0,
+              "open_invoices": [
+                {
+                  "id": 501,
+                  "vendor_id": 1,
+                  "amount": 840.0,
+                  "due_date": "2026-08-28",
+                  "status": "open"
+                }
+              ],
+              "open_invoice_total": 840.0,
+              "leases_due": [
+                {
+                  "id": 1,
+                  "space_name": "Chapel Street shop",
+                  "monthly_rent": 2400.0,
+                  "next_due": "2026-09-02"
+                }
+              ],
+              "rent_total": 2400.0,
+              "total_committed": 3240.0,
+              "remaining_if_all_paid": 160.0,
+              "can_cover_everything": true,
+              "payments_recorded_so_far": 0,
+              "note": "Cash only leaves this account \u2014 no revenue is modelled in this database, so the balance never rises. Payments are refused rather than allowed to overdraw it."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 16,
+            "note": null
+          },
+          {
+            "step": 10,
+            "at": "2026-10-14T22:52:57.024497-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "prepare_payment",
+            "tool_args": {
+              "kind": "invoice",
+              "ref_id": 501
+            },
+            "tool_result": {
+              "drafted": true,
+              "kind": "invoice",
+              "ref_id": 501,
+              "payee": "Bulldog Print Co",
+              "amount": 840.0,
+              "amount_source": "read from invoice row 501, not from the caller",
+              "due_date": "2026-08-28",
+              "days_until_due": -3,
+              "is_overdue": true,
+              "account": "checking",
+              "balance_before": 3400.0,
+              "balance_after_if_paid": 2560.0,
+              "affordable": true,
+              "requires_human_approval": true,
+              "would_unblock_vendor": {
+                "vendor_id": 1,
+                "vendor_name": "Bulldog Print Co",
+                "can_ship_now": false,
+                "can_ship_after_this_payment": true,
+                "lead_days_then": 5
+              },
+              "status": "DRAFT \u2014 not paid. No money has moved and nothing was written.",
+              "to_execute": "A human must approve. Only then may record_payment be called, with the approver's own name."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 11,
+            "at": "2026-10-14T22:52:57.391125-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Drafted the $840.00 payment to Bulldog Print Co for invoice 501, due 2026-08-28 and 3 days overdue as of 2026-08-31. Checking has $3,400.00; if paid, $2,560.00 would remain, and payment would unblock the vendor for shipping with a 5-day lead time; this is waiting for a person to approve and has not been paid.",
+              "facts_used": [
+                "get_invoice: invoice 501 is open, $840.00, overdue 3 days as of 2026-08-31; vendor Bulldog Print Co, lead time 5 days.",
+                "get_cash_position: checking balance $3,400.00; open invoices $840.00; rent due $2,400.00; remaining if all claims paid $160.00.",
+                "prepare_payment: payment draft for invoice 501; projected checking balance after payment $2,560.00; vendor can ship after payment; requires human approval; no money moved."
+              ],
+              "recommended_action": "A human should approve or decline the drafted $840.00 payment; if approved, it clears the invoice blocker so restocking can proceed, with the vendor's 5-day lead time.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 23543,
+            "output_tokens": 597,
+            "duration_ms": 1042,
+            "note": null
+          },
+          {
+            "step": 12,
+            "at": "2026-10-14T22:53:02.238512-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "We cannot fill ticket 101 today: CC-TEE-WHITE, size S, has 0 on hand, leaving a shortfall of 1. Bulldog Print Co is the evidence-based vendor (prior invoice 501 names this SKU and size), but it is blocked by that unpaid $840.00 invoice; its lead time is 5 days, implying arrival 2026-09-05 once unblocked. No restock request or order has been sent or placed.",
+              "facts_used": [
+                "get_ticket: ticket 101 asks for 1 CC-TEE-WHITE size S; notes say needs a tee in size S.",
+                "check_stock: qty_on_hand 0, qty_needed 1, can_fill false, shortfall 1.",
+                "find_restock_vendor: prior invoice 501 names CC-TEE-WHITE S from Bulldog Print Co; lead_days 5; vendor blocked by unpaid invoice 501 for $840.00; earliest arrival once unblocked 2026-09-05; as_of 2026-08-31.",
+                "Accounting: payment draft for invoice 501 is awaiting human approval; no payment made."
+              ],
+              "recommended_action": "After a human approves and clears invoice 501, send Bulldog Print Co a request: \u201cCould you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?\u201d Have Accounting prepare a purchase order for human approval; no order is committed.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": "Could you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?"
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 27209,
+            "output_tokens": 952,
+            "duration_ms": 7055,
+            "note": null
+          },
+          {
+            "step": 13,
+            "at": "2026-10-14T22:53:05.928890-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": "Ticket 101 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 101,
+              "assigned_to": "inventory",
+              "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+              "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+              "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 30432,
+            "output_tokens": 1161,
+            "duration_ms": 13036,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 30432,
+        "total_output_tokens": 1161,
+        "payments_made": 0,
+        "notes": "API run for ticket 101. Routing match: {'has_expectation': True, 'expected_first': 'inventory', 'expected_then': 'accounting', 'actual_specialists': ['accounting', 'inventory'], 'first_matched': False, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'check_stock', 'find_restock_vendor', 'get_invoice', 'prepare_payment'], 'actual_tools': ['check_stock', 'find_restock_vendor', 'get_cash_position', 'get_invoice', 'get_ticket', 'prepare_payment'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "api-20261015T025305Z-0e5dfd",
+        "started_at": "2026-10-14T22:53:05.933056-04:00",
+        "finished_at": "2026-10-14T22:53:19.159631-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          102
+        ],
+        "decisions": [
+          {
+            "ticket_id": 102,
+            "assigned_to": "facilities",
+            "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+            "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:53:09.211227-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 5,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:53:11.663898-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> facilities"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:53:13.448030-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:53:13.449316-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_lease_payment",
+            "tool_args": {
+              "lease_id": 1
+            },
+            "tool_result": {
+              "found": true,
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "amount_due": 2400.0,
+              "next_due": "2026-09-02",
+              "as_of": "2026-08-31",
+              "days_until_due": 2,
+              "is_overdue": false,
+              "lease_notes": null
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 11,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:53:16.020517-04:00",
+            "agent": "facilities",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "The lease records $2,400 owed to Elm City Properties, due 2026-09-02\u20142 days from the shop\u2019s date of 2026-08-31. That matches the email\u2019s timing; the lease is the authoritative amount and due date.",
+              "facts_used": [
+                "get_ticket: ticket 102 notes the email claims rent is due in 2 days; as_of 2026-08-31.",
+                "get_lease_payment: lease 1 lists landlord Elm City Properties, amount_due $2,400, next_due 2026-09-02, days_until_due 2."
+              ],
+              "recommended_action": "Have Accounting prepare a rent payment draft for human approval.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 10920,
+            "output_tokens": 302,
+            "duration_ms": 4356,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:53:19.159466-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": "Ticket 102 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 102,
+              "assigned_to": "facilities",
+              "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+              "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+              "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 13971,
+            "output_tokens": 492,
+            "duration_ms": 13226,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 13971,
+        "total_output_tokens": 492,
+        "payments_made": 0,
+        "notes": "API run for ticket 102. Routing match: {'has_expectation': True, 'expected_first': 'facilities', 'expected_then': 'accounting', 'actual_specialists': ['facilities'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'get_lease_payment', 'get_cash_position', 'prepare_payment'], 'actual_tools': ['get_lease_payment', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "api-20261015T025319Z-a71af5",
+        "started_at": "2026-10-14T22:53:19.164262-04:00",
+        "finished_at": "2026-10-14T22:53:33.120755-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          103
+        ],
+        "decisions": [
+          {
+            "ticket_id": 103,
+            "assigned_to": "accounting",
+            "instruction_given": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "decision": "Do not set a discount from the available records; keep the request pending human pricing decision. Accounting reports $22 unit cost and $58 list price ($440 cost and $1,160 list for 20); any discount needs human approval.",
+            "rationale": "Accounting reports a $720 gross margin at list. No discount policy or allowable discount percentage is recorded.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human decision and approval of any discount."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:53:22.627865-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:53:25.457652-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> accounting"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:53:27.277202-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:53:27.277616-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_price_and_margin",
+            "tool_args": {
+              "sku": "CC-HOOD-NAVY",
+              "qty": 20
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-HOOD-NAVY",
+              "name": "Basic Hoodie Big Yale",
+              "unit_cost": 22.0,
+              "list_price": 58.0,
+              "unit_margin": 36.0,
+              "margin_pct_of_list": 62.1,
+              "qty": 20,
+              "order_total_at_list": 1160.0,
+              "order_total_at_cost": 440.0,
+              "order_margin_at_list": 720.0,
+              "discount_authority_in_database": false,
+              "note": "No discount policy or approval authority is recorded in this database. Any discount must be approved outside these tools."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 11,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:53:30.041163-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Ticket 103 requests 20 size-M CC-HOOD-NAVY hoodies at a bulk discount. Recorded unit cost is $22 and list price is $58; totals are $440 at cost and $1,160 at list, leaving $720 gross margin at list (62.1% of list price per unit).",
+              "facts_used": [
+                "Ticket 103 notes and quantity/size from get_ticket.",
+                "Unit cost $22, list price $58, unit margin $36, margin percentage 62.1%, and order totals/margin from get_price_and_margin."
+              ],
+              "recommended_action": "Use the $22 unit cost as the floor and $58 list price as the ceiling when deciding; no discount percentage or approval authority is recorded, so a human must choose and approve any discount.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": "The database records no discount policy or approval authority and does not specify an allowable discount percentage.",
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 11156,
+            "output_tokens": 355,
+            "duration_ms": 4583,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:53:33.120538-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "human",
+            "prompt": "Ticket 103 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 103,
+              "assigned_to": "accounting",
+              "instruction_given": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+              "decision": "Do not set a discount from the available records; keep the request pending human pricing decision. Accounting reports $22 unit cost and $58 list price ($440 cost and $1,160 list for 20); any discount needs human approval.",
+              "rationale": "Accounting reports a $720 gross margin at list. No discount policy or allowable discount percentage is recorded.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human decision and approval of any discount."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 14265,
+            "output_tokens": 533,
+            "duration_ms": 13956,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 14265,
+        "total_output_tokens": 533,
+        "payments_made": 0,
+        "notes": "API run for ticket 103. Routing match: {'has_expectation': True, 'expected_first': 'accounting', 'expected_then': 'customer_service', 'actual_specialists': ['accounting'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'get_price_and_margin'], 'actual_tools': ['get_price_and_margin', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "api-20261015T025355Z-375bfd",
+        "started_at": "2026-10-14T22:53:55.763548-04:00",
+        "finished_at": "2026-10-14T22:54:02.071577-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          101
+        ],
+        "decisions": [
+          {
+            "ticket_id": 101,
+            "assigned_to": "inventory",
+            "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+            "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T22:53:57.980053-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 53,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T22:53:58.530244-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> inventory"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T22:53:58.959841-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T22:53:58.960340-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T22:53:59.417440-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "find_restock_vendor",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE"
+            },
+            "tool_result": {
+              "sku": "CC-TEE-WHITE",
+              "as_of": "2026-08-31",
+              "vendors": [
+                {
+                  "id": 3,
+                  "name": "QuickShip CT",
+                  "specialty": "local courier",
+                  "lead_days": 1,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-01",
+                  "earliest_arrival_once_unblocked": "2026-09-01"
+                },
+                {
+                  "id": 2,
+                  "name": "Elm City Gifts",
+                  "specialty": "mugs and small goods",
+                  "lead_days": 3,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-03",
+                  "earliest_arrival_once_unblocked": "2026-09-03"
+                },
+                {
+                  "id": 1,
+                  "name": "Bulldog Print Co",
+                  "specialty": "apparel reprint",
+                  "lead_days": 5,
+                  "can_ship": false,
+                  "blocked_reason": "Vendor will not ship while 1 unpaid invoice(s) totalling $840.00 remain open. Clear invoice 501 first.",
+                  "amount_owed_to_vendor": 840.0,
+                  "earliest_arrival_if_ordered_today": null,
+                  "earliest_arrival_once_unblocked": "2026-09-05"
+                }
+              ],
+              "vendors_able_to_ship": [
+                "QuickShip CT",
+                "Elm City Gifts"
+              ],
+              "vendors_blocked": [
+                "Bulldog Print Co"
+              ],
+              "prior_supply_evidence": [
+                {
+                  "invoice_id": 501,
+                  "vendor_id": 1,
+                  "vendor_name": "Bulldog Print Co",
+                  "description": "Rush reprint CC-TEE-WHITE S",
+                  "status": "open",
+                  "amount": 840.0
+                }
+              ],
+              "note": "No SKU-to-vendor mapping exists in this database. Vendor specialty text and prior invoices are the only evidence; choose on that basis and say which you used. Lead times are the vendors table's own lead_days. A vendor with an open unpaid invoice will not ship new product until that invoice is cleared."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T22:53:59.836706-04:00",
+            "agent": "inventory",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "inventory -> accounting"
+          },
+          {
+            "step": 7,
+            "at": "2026-10-14T22:54:00.277834-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_invoice",
+            "tool_args": {
+              "invoice_id": 501
+            },
+            "tool_result": {
+              "found": true,
+              "invoice_id": 501,
+              "vendor_id": 1,
+              "vendor_name": "Bulldog Print Co",
+              "vendor_lead_days": 5,
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "status": "open",
+              "description": "Rush reprint CC-TEE-WHITE S",
+              "as_of": "2026-08-31",
+              "days_until_due": -3,
+              "is_overdue": true
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 13,
+            "note": null
+          },
+          {
+            "step": 8,
+            "at": "2026-10-14T22:54:00.278424-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_cash_position",
+            "tool_args": {},
+            "tool_result": {
+              "as_of": "2026-08-31",
+              "accounts": [
+                {
+                  "name": "checking",
+                  "balance": 3400.0,
+                  "date": "2026-08-31"
+                }
+              ],
+              "total_cash": 3400.0,
+              "open_invoices": [
+                {
+                  "id": 501,
+                  "vendor_id": 1,
+                  "amount": 840.0,
+                  "due_date": "2026-08-28",
+                  "status": "open"
+                }
+              ],
+              "open_invoice_total": 840.0,
+              "leases_due": [
+                {
+                  "id": 1,
+                  "space_name": "Chapel Street shop",
+                  "monthly_rent": 2400.0,
+                  "next_due": "2026-09-02"
+                }
+              ],
+              "rent_total": 2400.0,
+              "total_committed": 3240.0,
+              "remaining_if_all_paid": 160.0,
+              "can_cover_everything": true,
+              "payments_recorded_so_far": 0,
+              "note": "Cash only leaves this account \u2014 no revenue is modelled in this database, so the balance never rises. Payments are refused rather than allowed to overdraw it."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 13,
+            "note": null
+          },
+          {
+            "step": 9,
+            "at": "2026-10-14T22:54:00.278649-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 13,
+            "note": null
+          },
+          {
+            "step": 10,
+            "at": "2026-10-14T22:54:00.777082-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "prepare_payment",
+            "tool_args": {
+              "kind": "invoice",
+              "ref_id": 501
+            },
+            "tool_result": {
+              "drafted": true,
+              "kind": "invoice",
+              "ref_id": 501,
+              "payee": "Bulldog Print Co",
+              "amount": 840.0,
+              "amount_source": "read from invoice row 501, not from the caller",
+              "due_date": "2026-08-28",
+              "days_until_due": -3,
+              "is_overdue": true,
+              "account": "checking",
+              "balance_before": 3400.0,
+              "balance_after_if_paid": 2560.0,
+              "affordable": true,
+              "requires_human_approval": true,
+              "would_unblock_vendor": {
+                "vendor_id": 1,
+                "vendor_name": "Bulldog Print Co",
+                "can_ship_now": false,
+                "can_ship_after_this_payment": true,
+                "lead_days_then": 5
+              },
+              "status": "DRAFT \u2014 not paid. No money has moved and nothing was written.",
+              "to_execute": "A human must approve. Only then may record_payment be called, with the approver's own name."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 4,
+            "note": null
+          },
+          {
+            "step": 11,
+            "at": "2026-10-14T22:54:01.292721-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Drafted the $840.00 payment to Bulldog Print Co for invoice 501, due 2026-08-28 and 3 days overdue as of 2026-08-31. Checking has $3,400.00; if paid, $2,560.00 would remain, and payment would unblock the vendor for shipping with a 5-day lead time; this is waiting for a person to approve and has not been paid.",
+              "facts_used": [
+                "get_invoice: invoice 501 is open, $840.00, overdue 3 days as of 2026-08-31; vendor Bulldog Print Co, lead time 5 days.",
+                "get_cash_position: checking balance $3,400.00; open invoices $840.00; rent due $2,400.00; remaining if all claims paid $160.00.",
+                "prepare_payment: payment draft for invoice 501; projected checking balance after payment $2,560.00; vendor can ship after payment; requires human approval; no money moved."
+              ],
+              "recommended_action": "A human should approve or decline the drafted $840.00 payment; if approved, it clears the invoice blocker so restocking can proceed, with the vendor's 5-day lead time.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 23543,
+            "output_tokens": 597,
+            "duration_ms": 1455,
+            "note": null
+          },
+          {
+            "step": 12,
+            "at": "2026-10-14T22:54:01.689276-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "We cannot fill ticket 101 today: CC-TEE-WHITE, size S, has 0 on hand, leaving a shortfall of 1. Bulldog Print Co is the evidence-based vendor (prior invoice 501 names this SKU and size), but it is blocked by that unpaid $840.00 invoice; its lead time is 5 days, implying arrival 2026-09-05 once unblocked. No restock request or order has been sent or placed.",
+              "facts_used": [
+                "get_ticket: ticket 101 asks for 1 CC-TEE-WHITE size S; notes say needs a tee in size S.",
+                "check_stock: qty_on_hand 0, qty_needed 1, can_fill false, shortfall 1.",
+                "find_restock_vendor: prior invoice 501 names CC-TEE-WHITE S from Bulldog Print Co; lead_days 5; vendor blocked by unpaid invoice 501 for $840.00; earliest arrival once unblocked 2026-09-05; as_of 2026-08-31.",
+                "Accounting: payment draft for invoice 501 is awaiting human approval; no payment made."
+              ],
+              "recommended_action": "After a human approves and clears invoice 501, send Bulldog Print Co a request: \u201cCould you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?\u201d Have Accounting prepare a purchase order for human approval; no order is committed.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": "Could you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?"
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 27209,
+            "output_tokens": 952,
+            "duration_ms": 3158,
+            "note": null
+          },
+          {
+            "step": 13,
+            "at": "2026-10-14T22:54:02.071340-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": "Ticket 101 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 101,
+              "assigned_to": "inventory",
+              "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+              "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+              "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 30432,
+            "output_tokens": 1161,
+            "duration_ms": 6307,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 30432,
+        "total_output_tokens": 1161,
+        "payments_made": 0,
+        "notes": "API run for ticket 101. Routing match: {'has_expectation': True, 'expected_first': 'inventory', 'expected_then': 'accounting', 'actual_specialists': ['inventory', 'accounting'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'check_stock', 'find_restock_vendor', 'get_invoice', 'prepare_payment'], 'actual_tools': ['check_stock', 'find_restock_vendor', 'get_cash_position', 'get_invoice', 'get_ticket', 'prepare_payment'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "reset-20261015T031023Z",
+        "started_at": "2026-10-14T23:10:23.284881-04:00",
+        "finished_at": "2026-10-14T23:10:23.287673-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:10:23.286237-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "reset-20261015T031049Z",
+        "started_at": "2026-10-14T23:10:49.661913-04:00",
+        "finished_at": "2026-10-14T23:10:49.662319-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:10:49.662138-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "api-20261015T031052Z-abc7c4",
+        "started_at": "2026-10-14T23:10:52.770540-04:00",
+        "finished_at": "2026-10-14T23:10:57.931046-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          102
+        ],
+        "decisions": [
+          {
+            "ticket_id": 102,
+            "assigned_to": "facilities",
+            "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+            "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:10:55.566561-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 74,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T23:10:56.046734-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> facilities"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T23:10:56.475915-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 8,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T23:10:56.477751-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_lease_payment",
+            "tool_args": {
+              "lease_id": 1
+            },
+            "tool_result": {
+              "found": true,
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "amount_due": 2400.0,
+              "next_due": "2026-09-02",
+              "as_of": "2026-08-31",
+              "days_until_due": 2,
+              "is_overdue": false,
+              "lease_notes": null
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T23:10:56.899360-04:00",
+            "agent": "facilities",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "The lease records $2,400 owed to Elm City Properties, due 2026-09-02\u20142 days from the shop\u2019s date of 2026-08-31. That matches the email\u2019s timing; the lease is the authoritative amount and due date.",
+              "facts_used": [
+                "get_ticket: ticket 102 notes the email claims rent is due in 2 days; as_of 2026-08-31.",
+                "get_lease_payment: lease 1 lists landlord Elm City Properties, amount_due $2,400, next_due 2026-09-02, days_until_due 2."
+              ],
+              "recommended_action": "Have Accounting prepare a rent payment draft for human approval.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 10920,
+            "output_tokens": 302,
+            "duration_ms": 852,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T23:10:57.315729-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": "Ticket 102 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 102,
+              "assigned_to": "facilities",
+              "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+              "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+              "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 13971,
+            "output_tokens": 492,
+            "duration_ms": 4545,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 13971,
+        "total_output_tokens": 492,
+        "payments_made": 0,
+        "notes": "API run for ticket 102. Routing match: {'has_expectation': True, 'expected_first': 'facilities', 'expected_then': 'accounting', 'actual_specialists': ['facilities'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'get_lease_payment', 'get_cash_position', 'prepare_payment'], 'actual_tools': ['get_lease_payment', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "approval-20261015T031100Z",
+        "started_at": "2026-10-14T23:11:00.955020-04:00",
+        "finished_at": "2026-10-14T23:11:00.955055-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:11:00.955037-04:00",
+            "agent": "accounting",
+            "event": "approval",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "Eduardo Casarrubias"
+            },
+            "tool_result": {
+              "paid": true,
+              "payment_id": 1,
+              "kind": "rent",
+              "ref_id": 1,
+              "amount": 2400.0,
+              "paid_at": "2026-08-31",
+              "approved_by": "Eduardo Casarrubias",
+              "balance_before": 3400.0,
+              "balance_after": 1000.0,
+              "tables_updated": [
+                "payments",
+                "cash_accounts"
+              ]
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Eduardo Casarrubias. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=True"
+      },
+      {
+        "run_id": "reset-20261015T031132Z",
+        "started_at": "2026-10-14T23:11:32.739787-04:00",
+        "finished_at": "2026-10-14T23:11:32.740039-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:11:32.739921-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 1000.0, 'payments': 1, 'open_tickets': 2}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "reset-20261015T031830Z",
+        "started_at": "2026-10-14T23:18:30.222772-04:00",
+        "finished_at": "2026-10-14T23:18:30.222992-04:00",
+        "model": "none (database reset, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:18:30.222898-04:00",
+            "agent": "boss",
+            "event": "reset",
+            "ticket_id": null,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Database restored from campus_customs.db. Before: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}. After: {'balance': 3400.0, 'payments': 0, 'open_tickets': 3}."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Database reset to original values. Audit trail preserved."
+      },
+      {
+        "run_id": "api-20261015T032102Z-976aa0",
+        "started_at": "2026-10-14T23:21:02.698371-04:00",
+        "finished_at": "2026-10-14T23:21:09.931347-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          101
+        ],
+        "decisions": [
+          {
+            "ticket_id": 101,
+            "assigned_to": "inventory",
+            "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+            "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:21:04.589087-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 10,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T23:21:05.075940-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> inventory"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T23:21:05.565793-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 15,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T23:21:05.566385-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "check_stock",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty_needed": 1
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty_on_hand": 0,
+              "qty_needed": 1,
+              "can_fill": false,
+              "shortfall": 1,
+              "location": "Aisle B"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 16,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T23:21:06.087268-04:00",
+            "agent": "inventory",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "find_restock_vendor",
+            "tool_args": {
+              "sku": "CC-TEE-WHITE"
+            },
+            "tool_result": {
+              "sku": "CC-TEE-WHITE",
+              "as_of": "2026-08-31",
+              "vendors": [
+                {
+                  "id": 3,
+                  "name": "QuickShip CT",
+                  "specialty": "local courier",
+                  "lead_days": 1,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-01",
+                  "earliest_arrival_once_unblocked": "2026-09-01"
+                },
+                {
+                  "id": 2,
+                  "name": "Elm City Gifts",
+                  "specialty": "mugs and small goods",
+                  "lead_days": 3,
+                  "can_ship": true,
+                  "blocked_reason": null,
+                  "amount_owed_to_vendor": 0,
+                  "earliest_arrival_if_ordered_today": "2026-09-03",
+                  "earliest_arrival_once_unblocked": "2026-09-03"
+                },
+                {
+                  "id": 1,
+                  "name": "Bulldog Print Co",
+                  "specialty": "apparel reprint",
+                  "lead_days": 5,
+                  "can_ship": false,
+                  "blocked_reason": "Vendor will not ship while 1 unpaid invoice(s) totalling $840.00 remain open. Clear invoice 501 first.",
+                  "amount_owed_to_vendor": 840.0,
+                  "earliest_arrival_if_ordered_today": null,
+                  "earliest_arrival_once_unblocked": "2026-09-05"
+                }
+              ],
+              "vendors_able_to_ship": [
+                "QuickShip CT",
+                "Elm City Gifts"
+              ],
+              "vendors_blocked": [
+                "Bulldog Print Co"
+              ],
+              "prior_supply_evidence": [
+                {
+                  "invoice_id": 501,
+                  "vendor_id": 1,
+                  "vendor_name": "Bulldog Print Co",
+                  "description": "Rush reprint CC-TEE-WHITE S",
+                  "status": "open",
+                  "amount": 840.0
+                }
+              ],
+              "note": "No SKU-to-vendor mapping exists in this database. Vendor specialty text and prior invoices are the only evidence; choose on that basis and say which you used. Lead times are the vendors table's own lead_days. A vendor with an open unpaid invoice will not ship new product until that invoice is cleared."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 9,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T23:21:06.533682-04:00",
+            "agent": "inventory",
+            "event": "delegation",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "inventory -> accounting"
+          },
+          {
+            "step": 7,
+            "at": "2026-10-14T23:21:07.011201-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_invoice",
+            "tool_args": {
+              "invoice_id": 501
+            },
+            "tool_result": {
+              "found": true,
+              "invoice_id": 501,
+              "vendor_id": 1,
+              "vendor_name": "Bulldog Print Co",
+              "vendor_lead_days": 5,
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "status": "open",
+              "description": "Rush reprint CC-TEE-WHITE S",
+              "as_of": "2026-08-31",
+              "days_until_due": -3,
+              "is_overdue": true
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 11,
+            "note": null
+          },
+          {
+            "step": 8,
+            "at": "2026-10-14T23:21:07.011683-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_cash_position",
+            "tool_args": {},
+            "tool_result": {
+              "as_of": "2026-08-31",
+              "accounts": [
+                {
+                  "name": "checking",
+                  "balance": 3400.0,
+                  "date": "2026-08-31"
+                }
+              ],
+              "total_cash": 3400.0,
+              "open_invoices": [
+                {
+                  "id": 501,
+                  "vendor_id": 1,
+                  "amount": 840.0,
+                  "due_date": "2026-08-28",
+                  "status": "open"
+                }
+              ],
+              "open_invoice_total": 840.0,
+              "leases_due": [
+                {
+                  "id": 1,
+                  "space_name": "Chapel Street shop",
+                  "monthly_rent": 2400.0,
+                  "next_due": "2026-09-02"
+                }
+              ],
+              "rent_total": 2400.0,
+              "total_committed": 3240.0,
+              "remaining_if_all_paid": 160.0,
+              "can_cover_everything": true,
+              "payments_recorded_so_far": 0,
+              "note": "Cash only leaves this account \u2014 no revenue is modelled in this database, so the balance never rises. Payments are refused rather than allowed to overdraw it."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 12,
+            "note": null
+          },
+          {
+            "step": 9,
+            "at": "2026-10-14T23:21:07.011777-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 101
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 101,
+              "type": "customer_order",
+              "requester": "Tauhid Zaman",
+              "subject": "Bulldog tee",
+              "sku": "CC-TEE-WHITE",
+              "size": "S",
+              "qty": 1,
+              "lease_id": null,
+              "invoice_id": 501,
+              "status": "open",
+              "notes": "Needs a tee in size S.",
+              "created_at": "2026-08-31T09:15:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 12,
+            "note": null
+          },
+          {
+            "step": 10,
+            "at": "2026-10-14T23:21:07.615368-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 101,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "prepare_payment",
+            "tool_args": {
+              "kind": "invoice",
+              "ref_id": 501
+            },
+            "tool_result": {
+              "drafted": true,
+              "kind": "invoice",
+              "ref_id": 501,
+              "payee": "Bulldog Print Co",
+              "amount": 840.0,
+              "amount_source": "read from invoice row 501, not from the caller",
+              "due_date": "2026-08-28",
+              "days_until_due": -3,
+              "is_overdue": true,
+              "account": "checking",
+              "balance_before": 3400.0,
+              "balance_after_if_paid": 2560.0,
+              "affordable": true,
+              "requires_human_approval": true,
+              "would_unblock_vendor": {
+                "vendor_id": 1,
+                "vendor_name": "Bulldog Print Co",
+                "can_ship_now": false,
+                "can_ship_after_this_payment": true,
+                "lead_days_then": 5
+              },
+              "status": "DRAFT \u2014 not paid. No money has moved and nothing was written.",
+              "to_execute": "A human must approve. Only then may record_payment be called, with the approver's own name."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 11,
+            "at": "2026-10-14T23:21:08.082656-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "inventory",
+            "prompt": "Ticket 101 is short 1 CC-TEE-WHITE size S. Vendor lookup shows Bulldog Print Co previously invoiced this exact SKU/size and is blocked by unpaid invoice 501 for $840.00. Please handle the invoice/payment approval route so restocking can proceed; a human must approve any payment.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Drafted the $840.00 payment to Bulldog Print Co for invoice 501, due 2026-08-28 and 3 days overdue as of 2026-08-31. Checking has $3,400.00; if paid, $2,560.00 would remain, and payment would unblock the vendor for shipping with a 5-day lead time; this is waiting for a person to approve and has not been paid.",
+              "facts_used": [
+                "get_invoice: invoice 501 is open, $840.00, overdue 3 days as of 2026-08-31; vendor Bulldog Print Co, lead time 5 days.",
+                "get_cash_position: checking balance $3,400.00; open invoices $840.00; rent due $2,400.00; remaining if all claims paid $160.00.",
+                "prepare_payment: payment draft for invoice 501; projected checking balance after payment $2,560.00; vendor can ship after payment; requires human approval; no money moved."
+              ],
+              "recommended_action": "A human should approve or decline the drafted $840.00 payment; if approved, it clears the invoice blocker so restocking can proceed, with the vendor's 5-day lead time.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 23543,
+            "output_tokens": 597,
+            "duration_ms": 1548,
+            "note": null
+          },
+          {
+            "step": 12,
+            "at": "2026-10-14T23:21:08.560659-04:00",
+            "agent": "inventory",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "boss",
+            "prompt": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "We cannot fill ticket 101 today: CC-TEE-WHITE, size S, has 0 on hand, leaving a shortfall of 1. Bulldog Print Co is the evidence-based vendor (prior invoice 501 names this SKU and size), but it is blocked by that unpaid $840.00 invoice; its lead time is 5 days, implying arrival 2026-09-05 once unblocked. No restock request or order has been sent or placed.",
+              "facts_used": [
+                "get_ticket: ticket 101 asks for 1 CC-TEE-WHITE size S; notes say needs a tee in size S.",
+                "check_stock: qty_on_hand 0, qty_needed 1, can_fill false, shortfall 1.",
+                "find_restock_vendor: prior invoice 501 names CC-TEE-WHITE S from Bulldog Print Co; lead_days 5; vendor blocked by unpaid invoice 501 for $840.00; earliest arrival once unblocked 2026-09-05; as_of 2026-08-31.",
+                "Accounting: payment draft for invoice 501 is awaiting human approval; no payment made."
+              ],
+              "recommended_action": "After a human approves and clears invoice 501, send Bulldog Print Co a request: \u201cCould you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?\u201d Have Accounting prepare a purchase order for human approval; no order is committed.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": "Could you please restock 1 unit of CC-TEE-WHITE in size S, needed by 2026-09-05?"
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 27209,
+            "output_tokens": 952,
+            "duration_ms": 3484,
+            "note": null
+          },
+          {
+            "step": 13,
+            "at": "2026-10-14T23:21:09.023691-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": "Ticket 101 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 101,
+              "assigned_to": "inventory",
+              "instruction_given": "Could you check whether we can fill ticket 101 for CC-TEE-WHITE, size S, quantity 1 today? The notes say the customer needs a size S tee.",
+              "decision": "Ticket 101 cannot be filled today: size S is out of stock. Restocking is blocked until invoice 501 is paid; no restock order has been placed.",
+              "rationale": "Inventory reported 0 on hand and a shortfall of 1. Bulldog Print Co is identified by prior invoice 501 for this SKU/size, but that invoice has $840.00 unpaid; its 5-day lead time means arrival 2026-09-05 once unblocked.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval and payment of invoice 501 ($840.00) are needed before the vendor can ship; a restock order would also need to be prepared for human approval."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 30432,
+            "output_tokens": 1161,
+            "duration_ms": 6325,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 30432,
+        "total_output_tokens": 1161,
+        "payments_made": 0,
+        "notes": "API run for ticket 101. Routing match: {'has_expectation': True, 'expected_first': 'inventory', 'expected_then': 'accounting', 'actual_specialists': ['inventory', 'accounting'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'check_stock', 'find_restock_vendor', 'get_invoice', 'prepare_payment'], 'actual_tools': ['check_stock', 'find_restock_vendor', 'get_cash_position', 'get_invoice', 'get_ticket', 'prepare_payment'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "approval-20261015T032210Z",
+        "started_at": "2026-10-14T23:22:10.431530-04:00",
+        "finished_at": "2026-10-14T23:22:10.431647-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:22:10.431603-04:00",
+            "agent": "accounting",
+            "event": "approval",
+            "ticket_id": 101,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "invoice",
+              "ref_id": 501,
+              "approved_by": "Eduardo CS"
+            },
+            "tool_result": {
+              "paid": true,
+              "payment_id": 1,
+              "kind": "invoice",
+              "ref_id": 501,
+              "amount": 840.0,
+              "paid_at": "2026-08-31",
+              "approved_by": "Eduardo CS",
+              "balance_before": 3400.0,
+              "balance_after": 2560.0,
+              "tables_updated": [
+                "payments",
+                "cash_accounts",
+                "invoices"
+              ]
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Eduardo CS. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=True"
+      },
+      {
+        "run_id": "api-20261015T032508Z-277c0d",
+        "started_at": "2026-10-14T23:25:08.782362-04:00",
+        "finished_at": "2026-10-14T23:25:13.111278-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          102
+        ],
+        "decisions": [
+          {
+            "ticket_id": 102,
+            "assigned_to": "facilities",
+            "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+            "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:25:10.554129-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 5,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T23:25:10.991397-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> facilities"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T23:25:11.431675-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 102
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 102,
+              "type": "rent_notice",
+              "requester": "Elm City Properties",
+              "subject": "Rent due",
+              "sku": null,
+              "size": null,
+              "qty": null,
+              "lease_id": 1,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Email: shop rent due in 2 days.",
+              "created_at": "2026-08-31T11:05:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 5,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T23:25:11.433937-04:00",
+            "agent": "facilities",
+            "event": "tool_call",
+            "ticket_id": 102,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_lease_payment",
+            "tool_args": {
+              "lease_id": 1
+            },
+            "tool_result": {
+              "found": true,
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "amount_due": 2400.0,
+              "next_due": "2026-09-02",
+              "as_of": "2026-08-31",
+              "days_until_due": 2,
+              "is_overdue": false,
+              "lease_notes": null
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T23:25:11.878247-04:00",
+            "agent": "facilities",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "boss",
+            "prompt": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "The lease records $2,400 owed to Elm City Properties, due 2026-09-02\u20142 days from the shop\u2019s date of 2026-08-31. That matches the email\u2019s timing; the lease is the authoritative amount and due date.",
+              "facts_used": [
+                "get_ticket: ticket 102 notes the email claims rent is due in 2 days; as_of 2026-08-31.",
+                "get_lease_payment: lease 1 lists landlord Elm City Properties, amount_due $2,400, next_due 2026-09-02, days_until_due 2."
+              ],
+              "recommended_action": "Have Accounting prepare a rent payment draft for human approval.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": null,
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 10920,
+            "output_tokens": 302,
+            "duration_ms": 886,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T23:25:12.273768-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": "Ticket 102 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 102,
+              "assigned_to": "facilities",
+              "instruction_given": "Please review ticket 102 (rent_notice, lease_id 1) and confirm the authoritative rent amount and due date from the lease record, noting whether it is due in two days as the email claims. Advise what decision is appropriate.",
+              "decision": "The lease confirms $2,400 is due on 2026-09-02, matching the email\u2019s two-day timing. Recommend preparing a rent payment draft for human approval; no payment has been made.",
+              "rationale": "Facilities reported lease 1\u2019s recorded amount and due date, and ticket 102 states the shop date is 2026-08-31 with the email claiming rent is due in two days.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human approval of a $2,400 rent payment for lease 1."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 13971,
+            "output_tokens": 492,
+            "duration_ms": 3490,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 13971,
+        "total_output_tokens": 492,
+        "payments_made": 0,
+        "notes": "API run for ticket 102. Routing match: {'has_expectation': True, 'expected_first': 'facilities', 'expected_then': 'accounting', 'actual_specialists': ['facilities'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'get_lease_payment', 'get_cash_position', 'prepare_payment'], 'actual_tools': ['get_lease_payment', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      },
+      {
+        "run_id": "approval-20261015T032523Z",
+        "started_at": "2026-10-14T23:25:23.430578-04:00",
+        "finished_at": "2026-10-14T23:25:23.430655-04:00",
+        "model": "none (human approval, no model called)",
+        "tickets_handled": [],
+        "decisions": [],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:25:23.430619-04:00",
+            "agent": "accounting",
+            "event": "approval",
+            "ticket_id": 102,
+            "asked_by": "human",
+            "prompt": null,
+            "tool_name": "record_payment",
+            "tool_args": {
+              "kind": "rent",
+              "ref_id": 1,
+              "approved_by": "Eduardo CS"
+            },
+            "tool_result": {
+              "paid": true,
+              "payment_id": 2,
+              "kind": "rent",
+              "ref_id": 1,
+              "amount": 2400.0,
+              "paid_at": "2026-08-31",
+              "approved_by": "Eduardo CS",
+              "balance_before": 2560.0,
+              "balance_after": 160.0,
+              "tables_updated": [
+                "payments",
+                "cash_accounts"
+              ]
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "Human approval by Eduardo CS. No agent can reach this tool."
+          }
+        ],
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "payments_made": 0,
+        "notes": "Human payment approval: paid=True"
+      },
+      {
+        "run_id": "api-20261015T032620Z-a6e46a",
+        "started_at": "2026-10-14T23:26:20.670391-04:00",
+        "finished_at": "2026-10-14T23:26:24.568066-04:00",
+        "model": "gpt-6-luna",
+        "tickets_handled": [
+          103
+        ],
+        "decisions": [
+          {
+            "ticket_id": 103,
+            "assigned_to": "accounting",
+            "instruction_given": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "decision": "Do not set a discount from the available records; keep the request pending human pricing decision. Accounting reports $22 unit cost and $58 list price ($440 cost and $1,160 list for 20); any discount needs human approval.",
+            "rationale": "Accounting reports a $720 gross margin at list. No discount policy or allowable discount percentage is recorded.",
+            "needs_human_approval": true,
+            "awaiting_human": "Human decision and approval of any discount."
+          }
+        ],
+        "steps": [
+          {
+            "step": 1,
+            "at": "2026-10-14T23:26:21.742316-04:00",
+            "agent": "boss",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 6,
+            "note": null
+          },
+          {
+            "step": 2,
+            "at": "2026-10-14T23:26:22.170237-04:00",
+            "agent": "boss",
+            "event": "delegation",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": null,
+            "note": "boss -> accounting"
+          },
+          {
+            "step": 3,
+            "at": "2026-10-14T23:26:22.773215-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_ticket",
+            "tool_args": {
+              "ticket_id": 103
+            },
+            "tool_result": {
+              "found": true,
+              "as_of": "2026-08-31",
+              "id": 103,
+              "type": "price_override",
+              "requester": "Yale AI Club",
+              "subject": "Bulk hoodie discount",
+              "sku": "CC-HOOD-NAVY",
+              "size": "M",
+              "qty": 20,
+              "lease_id": null,
+              "invoice_id": null,
+              "status": "open",
+              "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+              "created_at": "2026-08-31T16:55:00-04:00"
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 7,
+            "note": null
+          },
+          {
+            "step": 4,
+            "at": "2026-10-14T23:26:22.775258-04:00",
+            "agent": "accounting",
+            "event": "tool_call",
+            "ticket_id": 103,
+            "asked_by": null,
+            "prompt": null,
+            "tool_name": "get_price_and_margin",
+            "tool_args": {
+              "sku": "CC-HOOD-NAVY",
+              "qty": 20
+            },
+            "tool_result": {
+              "found": true,
+              "sku": "CC-HOOD-NAVY",
+              "name": "Basic Hoodie Big Yale",
+              "unit_cost": 22.0,
+              "list_price": 58.0,
+              "unit_margin": 36.0,
+              "margin_pct_of_list": 62.1,
+              "qty": 20,
+              "order_total_at_list": 1160.0,
+              "order_total_at_cost": 440.0,
+              "order_margin_at_list": 720.0,
+              "discount_authority_in_database": false,
+              "note": "No discount policy or approval authority is recorded in this database. Any discount must be approved outside these tools."
+            },
+            "output": null,
+            "model": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "duration_ms": 9,
+            "note": null
+          },
+          {
+            "step": 5,
+            "at": "2026-10-14T23:26:23.231087-04:00",
+            "agent": "accounting",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "boss",
+            "prompt": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "summary": "Ticket 103 requests 20 size-M CC-HOOD-NAVY hoodies at a bulk discount. Recorded unit cost is $22 and list price is $58; totals are $440 at cost and $1,160 at list, leaving $720 gross margin at list (62.1% of list price per unit).",
+              "facts_used": [
+                "Ticket 103 notes and quantity/size from get_ticket.",
+                "Unit cost $22, list price $58, unit margin $36, margin percentage 62.1%, and order totals/margin from get_price_and_margin."
+              ],
+              "recommended_action": "Use the $22 unit cost as the floor and $58 list price as the ceiling when deciding; no discount percentage or approval authority is recorded, so a human must choose and approve any discount.",
+              "needs_human_approval": true,
+              "blocked_on_missing_data": "The database records no discount policy or approval authority and does not specify an allowable discount percentage.",
+              "draft_message": null
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 11156,
+            "output_tokens": 355,
+            "duration_ms": 1060,
+            "note": null
+          },
+          {
+            "step": 6,
+            "at": "2026-10-14T23:26:23.704963-04:00",
+            "agent": "boss",
+            "event": "agent_run",
+            "ticket_id": 103,
+            "asked_by": "human",
+            "prompt": "Ticket 103 is open. Read it with get_ticket, then delegate to the single specialist whose job this is. Bring in a second only if the first genuinely cannot finish alone \u2014 never more than 2, and never every specialist.\n\nShop rules that may change the answer: today is desk.date_today; vendor lead times come from the vendors table; a vendor will not ship while one of their invoices is unpaid; cash only leaves the shop and a payment is refused rather than overdrawing it; and nothing is ever sent \u2014 drafts stay on the board for a human.\n\nGive your final decision briefly.",
+            "tool_name": null,
+            "tool_args": null,
+            "tool_result": null,
+            "output": {
+              "ticket_id": 103,
+              "assigned_to": "accounting",
+              "instruction_given": "Could you review ticket 103 for CC-HOOD-NAVY, quantity 20, and tell me the recorded cost/list price, order totals and margin implications? The requester asks for a bulk discount; please identify what the records do and do not support so I can decide.",
+              "decision": "Do not set a discount from the available records; keep the request pending human pricing decision. Accounting reports $22 unit cost and $58 list price ($440 cost and $1,160 list for 20); any discount needs human approval.",
+              "rationale": "Accounting reports a $720 gross margin at list. No discount policy or allowable discount percentage is recorded.",
+              "needs_human_approval": true,
+              "awaiting_human": "Human decision and approval of any discount."
+            },
+            "model": "gpt-6-luna",
+            "input_tokens": 14265,
+            "output_tokens": 533,
+            "duration_ms": 3034,
+            "note": null
+          }
+        ],
+        "total_input_tokens": 14265,
+        "total_output_tokens": 533,
+        "payments_made": 0,
+        "notes": "API run for ticket 103. Routing match: {'has_expectation': True, 'expected_first': 'accounting', 'expected_then': 'customer_service', 'actual_specialists': ['accounting'], 'first_matched': True, 'within_specialist_budget': True, 'no_forbidden_agents': True, 'unexpected_agents': [], 'deferred_agents_involved': [], 'expected_tools': ['get_ticket', 'get_price_and_margin'], 'actual_tools': ['get_price_and_margin', 'get_ticket'], 'unexpected_tools': [], 'no_forbidden_tools': True, 'record_payment_called': False}"
+      }
+    ],
+    "last_updated": "2026-10-14T23:26:24-04:00"
+  }
+}

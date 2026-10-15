@@ -1,0 +1,10 @@
+# Campus Customs HW5 — Python dependencies
+#
+#   python3 -m venv .venv
+#   .venv/bin/pip install -r requirements.txt
+
+fastmcp>=4.1.0                 # MCP server (mcp_server/server.py)
+pydantic-ai-slim[openai]>=2.56 # the five agents
+python-dotenv>=1.0.0           # reads PORTKEY_API_KEY from .env
+fastapi>=0.143.0               # backend API (backend/main.py)
+uvicorn[standard]>=0.54.0      # ASGI server for the backend

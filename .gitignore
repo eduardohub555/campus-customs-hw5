@@ -1,0 +1,15 @@
+# secrets — never commit the real key
+.env
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+
+# node
+node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+
+# macOS
+.DS_Store
